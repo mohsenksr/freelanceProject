@@ -1,4 +1,4 @@
-enum MoreTabPage {
+enum MoreOption {
   aboutUs,
   contactUs,
   faq,

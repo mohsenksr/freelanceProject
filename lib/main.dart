@@ -1,30 +1,70 @@
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:project_new_style/Enums/homeOptionsEnum.dart';
+import 'package:project_new_style/Enums/mainTabsEnum.dart';
+import 'package:project_new_style/Enums/moreOptionsEnum.dart';
 import 'package:project_new_style/Routes/homeRoute.dart';
 import 'package:project_new_style/Routes/messagesRoute.dart';
 import 'package:project_new_style/Routes/moreRoute.dart';
 import 'package:project_new_style/Routes/profileRoute.dart';
 import 'package:project_new_style/Routes/searchRoute.dart';
+import 'package:project_new_style/Setting/Routes.dart';
 import 'package:project_new_style/Styles/colors.dart';
 
 import 'Styles/textStyles.dart';
 
-void main() => runApp(CustomWidgetExample());
+void main() => runApp(MyApp());
 
-class CustomWidgetExample extends StatefulWidget {
-  State<StatefulWidget> createState() {
-    return _CustomWidgetExampleState();
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        title: 'freelance',
+        home: MainScreen(
+          initialTab: MainTab.home,
+        ),
+        routes: routes);
   }
 }
 
-class _CustomWidgetExampleState extends State<CustomWidgetExample> {
+class MainScreen extends StatefulWidget {
+  final MainTab initialTab;
+  final MoreOption moreOption;
+  final HomeOption homeOption;
+
+  MainScreen({
+    @required this.initialTab,
+    this.moreOption,
+    this.homeOption,
+  });
+
+  State<StatefulWidget> createState() {
+    return _MainScreenState(
+      initialTab,
+      moreOption,
+      homeOption,
+    );
+  }
+}
+
+class _MainScreenState extends State<MainScreen> {
   PersistentTabController _controller;
   // bool _hideNavBar;
+  final MainTab _initialTab;
+  final MoreOption _moreOption;
+  final HomeOption _homeOption;
+
+  _MainScreenState(
+    this._initialTab,
+    this._moreOption,
+    this._homeOption,
+  );
 
   @override
   void initState() {
     super.initState();
-    _controller = PersistentTabController(initialIndex: 0);
+    _controller =
+        PersistentTabController(initialIndex: getInitialIndex(_initialTab));
     // _hideNavBar = false;
   }
 
@@ -34,7 +74,7 @@ class _CustomWidgetExampleState extends State<CustomWidgetExample> {
       MessagesRoute(),
       SearchRoute(),
       ProfileRoute(),
-      MoreRoute(),
+      MoreRoute(_moreOption),
     ];
   }
 
@@ -132,9 +172,6 @@ class _CustomWidgetExampleState extends State<CustomWidgetExample> {
     );
   }
 }
-
-//TODO: route handling: example.com/home, example.com/more, example.com/...
-//TODO: route handling inside specific tab: example.com/about-us (it has to go to the more tab and then go to AboutUs)
 
 //.................... main features to do until 30 Azar, deadline of phase 1: ..........................
 //TODO: add more pages (designed by Mohammadjavad)

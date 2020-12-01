@@ -8,7 +8,8 @@ import 'package:project_new_style/Routes/messagesRoute.dart';
 import 'package:project_new_style/Routes/moreRoute.dart';
 import 'package:project_new_style/Routes/profileRoute.dart';
 import 'package:project_new_style/Routes/searchRoute.dart';
-import 'package:project_new_style/Setting/Routes.dart';
+import 'package:project_new_style/Setting/routes.dart';
+import 'package:project_new_style/Setting/strings.dart';
 import 'package:project_new_style/Styles/colors.dart';
 
 import 'Styles/textStyles.dart';
@@ -82,35 +83,35 @@ class _MainScreenState extends State<MainScreen> {
     return [
       PersistentBottomNavBarItem(
         icon: Icon(Icons.home),
-        title: "خانه",
+        title: homePageTitle,
         activeColor: themeColor,
         inactiveColor: Colors.grey,
         titleStyle: TextStyle(fontFamily: mainFontFamily),
       ),
       PersistentBottomNavBarItem(
         icon: Icon(Icons.message),
-        title: ("پیام‌ها"),
+        title: (messagesPageTitle),
         activeColor: themeColor,
         inactiveColor: Colors.grey,
         titleStyle: TextStyle(fontFamily: mainFontFamily),
       ),
       PersistentBottomNavBarItem(
         icon: Icon(Icons.search),
-        title: ("جستجو"),
+        title: (searchPageTitle),
         activeColor: themeColor,
         inactiveColor: Colors.grey,
         titleStyle: TextStyle(fontFamily: mainFontFamily),
       ),
       PersistentBottomNavBarItem(
         icon: Icon(Icons.person),
-        title: ("پروفایل"),
+        title: (profilePageTitle),
         activeColor: themeColor,
         inactiveColor: Colors.grey,
         titleStyle: TextStyle(fontFamily: mainFontFamily),
       ),
       PersistentBottomNavBarItem(
         icon: Icon(Icons.more_horiz),
-        title: ("بیشتر"),
+        title: (morePageTitle),
         activeColor: themeColor,
         inactiveColor: Colors.grey,
         titleStyle: TextStyle(fontFamily: mainFontFamily),
@@ -122,14 +123,6 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: const Text(
-            'پروژه فریلنس',
-            style: TextStyle(color: Colors.white, fontFamily: mainFontFamily),
-          ),
-          backgroundColor: themeColor,
-        ),
         // drawer: Drawer(
         //   child: Center(
         //     child: Column(

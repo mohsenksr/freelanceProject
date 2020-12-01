@@ -1,10 +1,10 @@
 enum MoreOption {
   aboutUs,
   contactUs,
+  pricings,
+  rules,
   faq,
   manual,
-  rules,
-  pricings,
   blog,
   softWareTeam,
 }

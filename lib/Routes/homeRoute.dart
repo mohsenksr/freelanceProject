@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:project_new_style/AppBars/normalAppBar.dart';
+import 'package:project_new_style/Setting/numbers.dart';
+import 'package:project_new_style/Setting/strings.dart';
 import './../Styles/colors.dart';
 import './../Styles/textStyles.dart';
 
@@ -23,21 +26,30 @@ class _HomeRouteState extends State<HomeRoute> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      alignment: Alignment.center,
-      child: Column(
+      color: backgroundColor,
+      child: Stack(
         children: [
-          Text(
-            'home state: ' + _state.toString(),
-            style: normalText,
-          ),
-          RaisedButton(
-            child: Text(
-              'change state',
-              style: normalText,
+          Container(
+            margin: EdgeInsets.only(top: appBarHeight + pagesTopMargin),
+            alignment: Alignment.center,
+            child: Column(
+              children: [
+                Text(
+                  'home state: ' + _state.toString(),
+                  style: normalText,
+                ),
+                RaisedButton(
+                  child: Text(
+                    'change state',
+                    style: normalText,
+                  ),
+                  onPressed: () => changeState(),
+                  color: themeColor,
+                ),
+              ],
             ),
-            onPressed: () => changeState(),
-            color: themeColor,
           ),
+          NormalAppBar(homePageTitle, false),
         ],
       ),
     );

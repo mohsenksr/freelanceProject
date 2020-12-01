@@ -1,27 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:project_new_style/AppBars/normalAppBar.dart';
+import 'package:project_new_style/Setting/numbers.dart';
+import 'package:project_new_style/Setting/strings.dart';
 import 'package:project_new_style/Styles/colors.dart';
-import 'package:project_new_style/Styles/textStyles.dart';
 
 class AboutUs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
-      alignment: Alignment.center,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text('about us'),
-          RaisedButton(
-            child: Text(
-              'go back',
-              style: normalText,
-            ),
-            onPressed: () => Navigator.pop(context),
-            color: themeColor,
+      color: backgroundColor,
+      child: Stack(children: [
+        Container(
+          alignment: Alignment.center,
+          margin: EdgeInsets.only(top: appBarHeight + pagesTopMargin),
+          child: Column(
+            children: [
+              Text('about us'),
+            ],
           ),
-        ],
-      ),
+        ),
+        NormalAppBar(aboutUsPageTitle, true),
+      ]),
     );
   }
 }

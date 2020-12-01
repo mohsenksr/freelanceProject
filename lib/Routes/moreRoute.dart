@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:project_new_style/AppBars/normalAppBar.dart';
 import 'package:project_new_style/Components/moreGridElement.dart';
 import 'package:project_new_style/Enums/moreOptionsEnum.dart';
 import 'package:project_new_style/Functions/moreFunctions.dart';
+import 'package:project_new_style/Setting/numbers.dart';
+import 'package:project_new_style/Setting/strings.dart';
+import 'package:project_new_style/Styles/colors.dart';
 
 class MoreRoute extends StatefulWidget {
   final MoreOption _moreOption;
@@ -20,7 +24,6 @@ class _MoreRouteState extends State<MoreRoute> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     if (_moreOption != null) {
@@ -38,29 +41,39 @@ class _MoreRouteState extends State<MoreRoute> {
     double _width = MediaQuery.of(context).size.width;
     bool _mobileView = _width < 800 ? true : false;
 
-    return GridView.count(
-      padding: EdgeInsets.fromLTRB(
-          _mobileView ? _width / 7 : _width / 6,
-          _mobileView ? 10 : 100,
-          _mobileView ? _width / 7 : _width / 6,
-          _mobileView ? 10 : 100),
-      crossAxisCount: _mobileView ? 2 : 4,
-      crossAxisSpacing: _mobileView ? 30.0 : _width / 30,
-      mainAxisSpacing: _mobileView ? 10.0 : _width / 30,
-      shrinkWrap: true,
-      children: [
-        GridElement(MoreOption.aboutUs),
-        GridElement(MoreOption.contactUs),
-        GridElement(MoreOption.pricings),
-        GridElement(MoreOption.rules),
-        GridElement(MoreOption.faq),
-        GridElement(MoreOption.manual),
-        GridElement(MoreOption.blog),
-        GridElement(MoreOption.softWareTeam),
-      ],
+    return Container(
+      color: backgroundColor,
+      child: Stack(
+        children: [
+          GridView.count(
+            padding: EdgeInsets.fromLTRB(
+                _mobileView ? _width / 7 : _width / 6,
+                _mobileView ? appBarHeight + pagesTopMargin : 180,
+                _mobileView ? _width / 7 : _width / 6,
+                _mobileView ? 30 : 100),
+            crossAxisCount: _mobileView ? 2 : 4,
+            crossAxisSpacing: _mobileView ? 30.0 : _width / 30,
+            mainAxisSpacing: _mobileView ? 10.0 : _width / 30,
+            shrinkWrap: true,
+            children: [
+              // GridElement(MoreOption.aboutUs),
+              // GridElement(MoreOption.contactUs),
+              // GridElement(MoreOption.pricings),
+              // GridElement(MoreOption.rules),
+              // GridElement(MoreOption.faq),
+              // GridElement(MoreOption.manual),
+              // GridElement(MoreOption.blog),
+              // GridElement(MoreOption.softWareTeam),
+              ...(MoreOption.values as List<MoreOption>).map((option) {
+                return GridElement(option);
+              }).toList(),
+            ],
+          ),
+          NormalAppBar(morePageTitle, false),
+        ],
+      ),
     );
   }
 }
 
-//TODO: set back button on pages with navigator.pop() similar to about us page
 //TODO: in mobileView alignment of persian texts of grids is NOT correct

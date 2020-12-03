@@ -12,10 +12,15 @@ import 'package:project_new_style/Setting/routes.dart';
 import 'package:project_new_style/Setting/strings.dart';
 import 'package:project_new_style/Styles/colors.dart';
 import 'package:project_new_style/Styles/icons.dart';
+import 'Configures/configure_nonweb.dart'
+    if (dart.library.html) 'Configures/configure_web.dart';
 
 import 'Styles/textStyles.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  configureApp();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override

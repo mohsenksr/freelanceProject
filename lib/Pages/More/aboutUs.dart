@@ -44,6 +44,9 @@ class AboutUs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double _width = MediaQuery.of(context).size.width;
+    bool _mobileView = _width < 800 ? true : false;
+
     return Container(
       color: backgroundColor,
       child: Stack(children: [
@@ -52,7 +55,11 @@ class AboutUs extends StatelessWidget {
           margin: EdgeInsets.only(top: appBarHeight + pagesTopMargin),
           child: SingleChildScrollView(
             child: Container(
-              margin: EdgeInsets.only(bottom: pagesBottomMargin),
+              margin: EdgeInsets.only(
+                bottom: pagesBottomMargin,
+                left: _mobileView ? 10 : _width / 4,
+                right: _mobileView ? 10 : _width / 4,
+              ),
               child: Column(
                 children: [
                   ...(data as List<Map<String, Object>>).map((item) {

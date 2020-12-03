@@ -48,16 +48,18 @@ class MoreTextElement extends StatelessWidget {
                     Icon(
                       itemIcon,
                     ),
-                    Container(
-                      width: MediaQuery.of(context).size.width * 0.83,
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 2, horizontal: 5),
-                      child: Text(
-                        item[headerKey],
-                        style: TextStyle(
-                          fontFamily: mainFontFamily,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                    Expanded(
+                      child: Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 2, horizontal: 5),
+                        child: Text(
+                          item[headerKey],
+                          style: TextStyle(
+                            fontFamily: mainFontFamily,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ),

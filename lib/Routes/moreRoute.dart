@@ -56,14 +56,6 @@ class _MoreRouteState extends State<MoreRoute> {
             mainAxisSpacing: _mobileView ? 10.0 : _width / 30,
             shrinkWrap: true,
             children: [
-              // GridElement(MoreOption.aboutUs),
-              // GridElement(MoreOption.contactUs),
-              // GridElement(MoreOption.pricings),
-              // GridElement(MoreOption.rules),
-              // GridElement(MoreOption.faq),
-              // GridElement(MoreOption.manual),
-              // GridElement(MoreOption.blog),
-              // GridElement(MoreOption.softWareTeam),
               ...(MoreOption.values as List<MoreOption>).map((option) {
                 return GridElement(option);
               }).toList(),

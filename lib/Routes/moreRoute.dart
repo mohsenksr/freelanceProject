@@ -10,21 +10,24 @@ import 'package:project_new_style/Styles/colors.dart';
 
 class MoreRoute extends StatefulWidget {
   final MoreOption _moreOption;
+  final int _id;
 
-  MoreRoute(this._moreOption);
+  MoreRoute(this._moreOption, this._id);
 
   @override
-  _MoreRouteState createState() => _MoreRouteState(_moreOption);
+  _MoreRouteState createState() => _MoreRouteState(_moreOption, _id);
 }
 
 class _MoreRouteState extends State<MoreRoute> {
   final MoreOption _moreOption;
+  final int _id;
 
-  _MoreRouteState(this._moreOption);
+  _MoreRouteState(this._moreOption, this._id);
 
   @override
   void initState() {
     super.initState();
+    print(_id);
 
     if (_moreOption != null) {
       WidgetsBinding.instance

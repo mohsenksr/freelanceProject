@@ -42,6 +42,7 @@ IconData getIcon(moreOption) {
   }
 }
 
+//TODO: remove hard code
 String getText(moreOption) {
   switch (moreOption) {
     case MoreOption.aboutUs:

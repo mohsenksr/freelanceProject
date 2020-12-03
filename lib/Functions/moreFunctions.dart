@@ -9,32 +9,33 @@ import 'package:project_new_style/Pages/More/manual.dart';
 import 'package:project_new_style/Pages/More/pricings.dart';
 import 'package:project_new_style/Pages/More/rules.dart';
 import 'package:project_new_style/Pages/More/softwareTeam.dart';
+import 'package:project_new_style/Styles/icons.dart';
 
 IconData getIcon(moreOption) {
   switch (moreOption) {
     case MoreOption.aboutUs:
-      return Icons.info;
+      return aboutUsIcon;
       break;
     case MoreOption.contactUs:
-      return Icons.contact_phone;
+      return contactUsIcon;
       break;
     case MoreOption.faq:
-      return Icons.my_library_books;
+      return faqIcon;
       break;
     case MoreOption.rules:
-      return Icons.rule;
+      return rulesIcon;
       break;
     case MoreOption.pricings:
-      return Icons.attach_money;
+      return pricingsIcon;
       break;
     case MoreOption.manual:
-      return Icons.integration_instructions;
+      return manualIcon;
       break;
     case MoreOption.blog:
-      return Icons.web;
+      return blogIcon;
       break;
     case MoreOption.softWareTeam:
-      return Icons.developer_mode;
+      return softWareTeamIcon;
       break;
     default:
       return Icons.info;

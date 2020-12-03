@@ -11,6 +11,7 @@ import 'package:project_new_style/Routes/searchRoute.dart';
 import 'package:project_new_style/Setting/routes.dart';
 import 'package:project_new_style/Setting/strings.dart';
 import 'package:project_new_style/Styles/colors.dart';
+import 'package:project_new_style/Styles/icons.dart';
 
 import 'Styles/textStyles.dart';
 
@@ -82,35 +83,35 @@ class _MainScreenState extends State<MainScreen> {
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.home),
+        icon: Icon(homeIcon),
         title: homePageTitle,
         activeColor: themeColor,
         inactiveColor: Colors.grey,
         titleStyle: TextStyle(fontFamily: mainFontFamily),
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.message),
+        icon: Icon(messagesIcon),
         title: (messagesPageTitle),
         activeColor: themeColor,
         inactiveColor: Colors.grey,
         titleStyle: TextStyle(fontFamily: mainFontFamily),
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.search),
+        icon: Icon(searchIcon),
         title: (searchPageTitle),
         activeColor: themeColor,
         inactiveColor: Colors.grey,
         titleStyle: TextStyle(fontFamily: mainFontFamily),
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.person),
+        icon: Icon(profileIcon),
         title: (profilePageTitle),
         activeColor: themeColor,
         inactiveColor: Colors.grey,
         titleStyle: TextStyle(fontFamily: mainFontFamily),
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.more_horiz),
+        icon: Icon(moreIcon),
         title: (morePageTitle),
         activeColor: themeColor,
         inactiveColor: Colors.grey,
@@ -167,7 +168,7 @@ class _MainScreenState extends State<MainScreen> {
 }
 
 //.................... main features to do until 30 Azar, deadline of phase 1: ..........................
-//TODO: add more pages (designed by Mohammadjavad)
+//TODO: add remained more pages: pricings, blog, manual, softWareTeam
 //TODO: connect more pages to the server
 //TODO: design blog and connect to server
 //TODO: design home page and connect to server

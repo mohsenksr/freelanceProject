@@ -99,3 +99,5 @@ class HomeWebAppBar extends StatelessWidget {
 //     throw 'Could not launch $url';
 //   }
 // }
+
+//TODO: some problems with url_launcher package. so buttons are inactive presently.

@@ -12,6 +12,13 @@ import 'package:project_new_style/Setting/routes.dart';
 import 'package:project_new_style/Setting/strings.dart';
 import 'package:project_new_style/Styles/colors.dart';
 import 'package:project_new_style/Styles/icons.dart';
+import 'package:project_new_style/providers/MorePageProviders/aboutUsProvider.dart';
+import 'package:project_new_style/providers/MorePageProviders/contactUsProvider.dart';
+import 'package:project_new_style/providers/MorePageProviders/faqProvider.dart';
+import 'package:project_new_style/providers/MorePageProviders/manualProvider.dart';
+import 'package:project_new_style/providers/MorePageProviders/pricingProvider.dart';
+import 'package:project_new_style/providers/MorePageProviders/rulesProvider.dart';
+import 'package:provider/provider.dart';
 import 'Configures/configure_nonweb.dart'
     if (dart.library.html) 'Configures/configure_web.dart';
 
@@ -127,45 +134,55 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        // drawer: Drawer(
-        //   child: Center(
-        //     child: Column(
-        //       mainAxisAlignment: MainAxisAlignment.center,
-        //       children: <Widget>[
-        //         const Text('This is the Drawer'),
-        //       ],
-        //     ),
-        //   ),
-        // ),
-        body: PersistentTabView(
-          controller: _controller,
-          screens: _buildScreens(),
-          confineInSafeArea: true,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider.value(value: AboutUsProvider()),
+        ChangeNotifierProvider.value(value: ContactUsProvider()),
+        ChangeNotifierProvider.value(value: FaqProvider()),
+        ChangeNotifierProvider.value(value: ManualProvider()),
+        ChangeNotifierProvider.value(value: PricingProvider()),
+        ChangeNotifierProvider.value(value: RuleProvider()),
+      ],
+      child: MaterialApp(
+        home: Scaffold(
+          // drawer: Drawer(
+          //   child: Center(
+          //     child: Column(
+          //       mainAxisAlignment: MainAxisAlignment.center,
+          //       children: <Widget>[
+          //         const Text('This is the Drawer'),
+          //       ],
+          //     ),
+          //   ),
+          // ),
+          body: PersistentTabView(
+            controller: _controller,
+            screens: _buildScreens(),
+            confineInSafeArea: true,
 
-          itemCount: 5,
-          backgroundColor: Colors.white,
-          handleAndroidBackButtonPress: true,
-          resizeToAvoidBottomInset: true,
-          stateManagement: true,
-          hideNavigationBarWhenKeyboardShows: true,
-          // hideNavigationBar: _hideNavBar,
-          decoration: NavBarDecoration(
-              colorBehindNavBar: themeColor,
-              borderRadius: BorderRadius.circular(20.0)),
-          popAllScreensOnTapOfSelectedTab: true,
-          itemAnimationProperties: ItemAnimationProperties(
-            duration: Duration(milliseconds: 400),
-            curve: Curves.ease,
+            itemCount: 5,
+            backgroundColor: Colors.white,
+            handleAndroidBackButtonPress: true,
+            resizeToAvoidBottomInset: true,
+            stateManagement: true,
+            hideNavigationBarWhenKeyboardShows: true,
+            // hideNavigationBar: _hideNavBar,
+            decoration: NavBarDecoration(
+                colorBehindNavBar: themeColor,
+                borderRadius: BorderRadius.circular(20.0)),
+            popAllScreensOnTapOfSelectedTab: true,
+            itemAnimationProperties: ItemAnimationProperties(
+              duration: Duration(milliseconds: 400),
+              curve: Curves.ease,
+            ),
+            screenTransitionAnimation: ScreenTransitionAnimation(
+              animateTabTransition: true,
+              curve: Curves.ease,
+              duration: Duration(milliseconds: 400),
+            ),
+            items: _navBarsItems(),
+            navBarStyle: NavBarStyle.style9,
           ),
-          screenTransitionAnimation: ScreenTransitionAnimation(
-            animateTabTransition: true,
-            curve: Curves.ease,
-            duration: Duration(milliseconds: 400),
-          ),
-          items: _navBarsItems(),
-          navBarStyle: NavBarStyle.style9,
         ),
       ),
     );

@@ -75,5 +75,3 @@ class _MoreRouteState extends State<MoreRoute> {
     );
   }
 }
-
-//TODO: in mobileView alignment of persian texts of grids is NOT correct

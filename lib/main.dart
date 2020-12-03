@@ -156,7 +156,7 @@ class _MainScreenState extends State<MainScreen> {
           screenTransitionAnimation: ScreenTransitionAnimation(
             animateTabTransition: true,
             curve: Curves.ease,
-            duration: Duration(milliseconds: 200),
+            duration: Duration(milliseconds: 400),
           ),
           items: _navBarsItems(),
           navBarStyle: NavBarStyle.style9,

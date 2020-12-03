@@ -38,6 +38,7 @@ class GridElement extends StatelessWidget {
                 flex: 1,
                 child: Text(
                   getText(_moreOption),
+                  textDirection: TextDirection.rtl,
                   style: TextStyle(
                       color: Colors.white, fontFamily: mainFontFamily),
                 )),
@@ -49,8 +50,7 @@ class GridElement extends StatelessWidget {
           context,
           settings: null,
           screen: getScreen(_moreOption),
-
-          // pageTransitionAnimation: PageTransitionAnimation.scaleRotate
+          pageTransitionAnimation: PageTransitionAnimation.fade,
         );
       },
     );

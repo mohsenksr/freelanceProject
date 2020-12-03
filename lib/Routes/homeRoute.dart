@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:project_new_style/AppBars/homeWebAppBar.dart';
 import 'package:project_new_style/AppBars/normalAppBar.dart';
 import 'package:project_new_style/Setting/numbers.dart';
 import 'package:project_new_style/Setting/strings.dart';
 import './../Styles/colors.dart';
 import './../Styles/textStyles.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class HomeRoute extends StatefulWidget {
   @override
@@ -49,7 +51,7 @@ class _HomeRouteState extends State<HomeRoute> {
               ],
             ),
           ),
-          NormalAppBar(homePageTitle, false),
+          kIsWeb ? HomeWebAppBar() : NormalAppBar(homePageAppBarTitle, false),
         ],
       ),
     );

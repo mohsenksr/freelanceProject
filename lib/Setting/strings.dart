@@ -12,3 +12,7 @@ String faqPageTitle = 'سوالات متداول';
 String blogPageTitle = 'وبلاگ';
 String softwareTeamPageTitle = 'تیم توسعه';
 String templatePageTitle = '//template//';
+
+String homePageAppBarTitle = 'فریلنسر';
+String homePageAppBarInstallApp = 'نصب برنامه';
+String homePageAppBarPricings = 'تعرفه‌ها';

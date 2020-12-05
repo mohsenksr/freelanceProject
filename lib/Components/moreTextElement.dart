@@ -88,3 +88,5 @@ class MoreTextElement extends StatelessWidget {
     );
   }
 }
+
+//TODO: english words in persian text

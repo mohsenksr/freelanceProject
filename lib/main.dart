@@ -8,10 +8,11 @@ import 'package:project_new_style/Routes/messagesRoute.dart';
 import 'package:project_new_style/Routes/moreRoute.dart';
 import 'package:project_new_style/Routes/profileRoute.dart';
 import 'package:project_new_style/Routes/searchRoute.dart';
-import 'package:project_new_style/Setting/routes.dart';
+import 'package:project_new_style/Setting/router.dart';
 import 'package:project_new_style/Setting/strings.dart';
 import 'package:project_new_style/Styles/colors.dart';
 import 'package:project_new_style/Styles/icons.dart';
+import 'package:project_new_style/Functions/mainFunctions.dart';
 import 'package:project_new_style/providers/MorePageProviders/aboutUsProvider.dart';
 import 'package:project_new_style/providers/MorePageProviders/contactUsProvider.dart';
 import 'package:project_new_style/providers/MorePageProviders/faqProvider.dart';
@@ -26,6 +27,7 @@ import 'Styles/textStyles.dart';
 
 void main() {
   configureApp();
+  FluroMainRouter.defineRoutes();
   runApp(MyApp());
 }
 
@@ -33,11 +35,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'freelance',
-        home: MainScreen(
-          initialTab: MainTab.home,
-        ),
-        routes: routes);
+      home: MainScreen(
+        initialTab: MainTab.home,
+      ),
+      initialRoute: '/',
+      onGenerateRoute: FluroMainRouter.router.generator,
+    );
   }
 }
 
@@ -45,18 +48,17 @@ class MainScreen extends StatefulWidget {
   final MainTab initialTab;
   final MoreOption moreOption;
   final HomeOption homeOption;
+  final int id;
 
-  MainScreen({
-    @required this.initialTab,
-    this.moreOption,
-    this.homeOption,
-  });
+  MainScreen(
+      {@required this.initialTab, this.moreOption, this.homeOption, this.id});
 
   State<StatefulWidget> createState() {
     return _MainScreenState(
       initialTab,
       moreOption,
       homeOption,
+      id,
     );
   }
 }
@@ -67,11 +69,13 @@ class _MainScreenState extends State<MainScreen> {
   final MainTab _initialTab;
   final MoreOption _moreOption;
   final HomeOption _homeOption;
+  final int _id;
 
   _MainScreenState(
     this._initialTab,
     this._moreOption,
     this._homeOption,
+    this._id,
   );
 
   @override
@@ -88,7 +92,7 @@ class _MainScreenState extends State<MainScreen> {
       MessagesRoute(),
       SearchRoute(),
       ProfileRoute(),
-      MoreRoute(_moreOption),
+      MoreRoute(_moreOption, _id),
     ];
   }
 

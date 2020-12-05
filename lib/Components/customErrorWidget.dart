@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:project_new_style/Setting/numbers.dart';
 import 'package:project_new_style/Styles/textStyles.dart';
 
 class CustomErrorWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
-    bool _mobileView = _width < 800 ? true : false;
+    bool _mobileView = _width < mobileViewMaxWidth ? true : false;
     return Scaffold(
       body: Center(
           child: Column(

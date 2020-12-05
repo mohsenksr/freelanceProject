@@ -42,7 +42,7 @@ class _MoreRouteState extends State<MoreRoute> {
   @override
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
-    bool _mobileView = _width < 800 ? true : false;
+    bool _mobileView = _width < mobileViewMaxWidth ? true : false;
 
     return Container(
       color: backgroundColor,

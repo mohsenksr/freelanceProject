@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:project_new_style/Enums/moreOptionsEnum.dart';
 import 'package:project_new_style/Functions/moreFunctions.dart';
+import 'package:project_new_style/Setting/numbers.dart';
 
 import 'package:project_new_style/Styles/colors.dart';
 import 'package:project_new_style/Styles/textStyles.dart';
@@ -14,7 +15,7 @@ class GridElement extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
-    bool _mobileView = _width < 800 ? true : false;
+    bool _mobileView = _width < mobileViewMaxWidth ? true : false;
 
     return InkWell(
       child: Card(

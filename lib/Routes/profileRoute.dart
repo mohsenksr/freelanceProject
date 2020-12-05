@@ -25,12 +25,19 @@ class _ProfileRouteState extends State<ProfileRoute> {
 
   @override
   Widget build(BuildContext context) {
+    double _width = MediaQuery.of(context).size.width;
+    bool _mobileView = _width < mobileViewMaxWidth ? true : false;
+
     return Container(
       color: backgroundColor,
       child: Stack(
         children: [
           Container(
-            margin: EdgeInsets.only(top: appBarHeight + pagesTopMargin),
+            margin: EdgeInsets.only(
+              top: appBarHeight + pagesTopMargin,
+              left: pagesRightAndLeftMargin(_width, _mobileView),
+              right: pagesRightAndLeftMargin(_width, _mobileView),
+            ),
             alignment: Alignment.center,
             child: Column(
               children: [

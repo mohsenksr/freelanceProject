@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
-
+import '../../Setting/serverUrl.dart';
 import '../../models/ProviderModels/contactUsModel.dart';
 
 class ContactUsProvider with ChangeNotifier {
@@ -14,7 +14,7 @@ class ContactUsProvider with ChangeNotifier {
   }
 
   Future<void> fetchContactUs() async {
-    final url = 'http://138.201.6.240:8001/api/contact-us';
+    final url = contactUsUrl;
     try {
       final response = await http.get(url);
       if (response.statusCode >= 400) {

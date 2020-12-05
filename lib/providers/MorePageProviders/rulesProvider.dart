@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
+import '../../Setting/serverUrl.dart';
 import '../../models/ProviderModels/ruleModel.dart';
 
 class RuleProvider with ChangeNotifier {
@@ -14,7 +15,7 @@ class RuleProvider with ChangeNotifier {
   }
 
   Future<void> fetchRules() async {
-    final url = 'http://138.201.6.240:8001/api/rules';
+    final url = rulesUrl;
     try {
       final response = await http.get(url);
       if (response.statusCode >= 400) {

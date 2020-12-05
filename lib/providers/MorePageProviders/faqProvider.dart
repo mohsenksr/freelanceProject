@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:project_new_style/Pages/More/faq.dart';
 
+import '../../Setting/serverUrl.dart';
 import '../../models/ProviderModels/faqModel.dart';
 
 class FaqProvider with ChangeNotifier {
@@ -15,7 +16,7 @@ class FaqProvider with ChangeNotifier {
   }
 
   Future<void> fetchFaq() async {
-    final url = 'http://138.201.6.240:8001/api/faq';
+    final url = faqUrl;
     try {
       final response = await http.get(url);
       if (response.statusCode >= 400) {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_new_style/AppBars/normalAppBar.dart';
+import 'package:project_new_style/Components/customErrorWidget.dart';
 import 'package:project_new_style/Components/customIndicator.dart';
 import 'package:project_new_style/Components/moreTextElement.dart';
 import 'package:project_new_style/Setting/numbers.dart';
@@ -57,7 +58,7 @@ class ContactUs extends StatelessWidget {
           } else {
             if (snapShot.hasError) {
               print('no data');
-              return Center(child: Text('sth went wrong'));
+              return CustomErrorWidget();
             } else {
               return Container(
                 color: backgroundColor,

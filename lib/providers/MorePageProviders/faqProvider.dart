@@ -33,7 +33,7 @@ class FaqProvider with ChangeNotifier {
       });
       notifyListeners();
     } catch (e) {
-      // TODO
+      throw e;
     }
   }
 }

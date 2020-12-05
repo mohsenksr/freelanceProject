@@ -59,7 +59,7 @@ class AboutUs extends StatelessWidget {
           if (snapShot.connectionState == ConnectionState.waiting) {
             return CustomIndicator();
           } else {
-            print(snapShot.hasError);
+            //print(snapShot.hasError);
             if (snapShot.hasError) {
               //print('no data');
               return CustomErrorWidget();

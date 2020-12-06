@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:project_new_style/Pages/More/blogPost.dart';
 import 'package:project_new_style/Setting/numbers.dart';
 import 'package:project_new_style/Styles/colors.dart';
 import 'package:project_new_style/Styles/textStyles.dart';
 
 class BlogPostElement extends StatelessWidget {
+  final int _postId;
   final String _imageUrl;
   final String _title;
   final String _date;
   final String _time;
 
-  BlogPostElement(this._title, this._imageUrl, this._date, this._time);
+  BlogPostElement(
+      this._postId, this._title, this._imageUrl, this._date, this._time);
 
   @override
   Widget build(BuildContext context) {
@@ -120,7 +124,14 @@ class BlogPostElement extends StatelessWidget {
                               style: TextStyle(fontFamily: mainFontFamily),
                             )),
                       ),
-                      onTap: () => {},
+                      onTap: () => {
+                        pushNewScreenWithRouteSettings(
+                          context,
+                          settings: null,
+                          screen: BlogPost(_postId),
+                          pageTransitionAnimation: PageTransitionAnimation.fade,
+                        ),
+                      },
                     ),
                   ],
                 )

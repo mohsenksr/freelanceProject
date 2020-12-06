@@ -35,25 +35,32 @@ class _ProfileRouteState extends State<ProfileRoute> {
           Container(
             margin: EdgeInsets.only(
               top: appBarHeight + pagesTopMargin,
-              left: pagesRightAndLeftMargin(_width, _mobileView),
-              right: pagesRightAndLeftMargin(_width, _mobileView),
             ),
             alignment: Alignment.center,
-            child: Column(
-              children: [
-                Text(
-                  'profile state: ' + _state.toString(),
-                  style: normalText,
+            child: SingleChildScrollView(
+              child: Container(
+                margin: EdgeInsets.only(
+                  bottom: pagesBottomMargin,
+                  left: pagesRightAndLeftMargin(_width, _mobileView),
+                  right: pagesRightAndLeftMargin(_width, _mobileView),
                 ),
-                RaisedButton(
-                  child: Text(
-                    'change state',
-                    style: normalText,
-                  ),
-                  onPressed: () => changeState(),
-                  color: themeColor,
+                child: Column(
+                  children: [
+                    Text(
+                      'profile state: ' + _state.toString(),
+                      style: normalText,
+                    ),
+                    RaisedButton(
+                      child: Text(
+                        'change state',
+                        style: normalText,
+                      ),
+                      onPressed: () => changeState(),
+                      color: themeColor,
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
           NormalAppBar(profilePageTitle, false),

@@ -22,20 +22,27 @@ class ScreenTemplate extends StatelessWidget {
           alignment: Alignment.center,
           margin: EdgeInsets.only(
             top: appBarHeight + pagesTopMargin,
-            left: pagesRightAndLeftMargin(_width, _mobileView),
-            right: pagesRightAndLeftMargin(_width, _mobileView),
           ),
-          child: Column(
-            children: [
-              Text('this is just a template for creating new pages.'),
-              Text('never use this class!'),
-              Text(
-                  'for create new pages, don\'t rermove Container/Stack/Container classes.'),
-              Text('these are necessary for appbar'),
-              Text('also don\'t edit color and margin'),
-              Text(
-                  'don\'t forget to add page title in strings and edit NormalAppBar arguments'),
-            ],
+          child: SingleChildScrollView(
+            child: Container(
+              margin: EdgeInsets.only(
+                bottom: pagesBottomMargin,
+                left: pagesRightAndLeftMargin(_width, _mobileView),
+                right: pagesRightAndLeftMargin(_width, _mobileView),
+              ),
+              child: Column(
+                children: [
+                  Text('this is just a template for creating new pages.'),
+                  Text('never use this class!'),
+                  Text(
+                      'for create new pages, don\'t rermove Container/Stack/Container classes.'),
+                  Text('these are necessary for appbar'),
+                  Text('also don\'t edit color and margin'),
+                  Text(
+                      'don\'t forget to add page title in strings and edit NormalAppBar arguments'),
+                ],
+              ),
+            ),
           ),
         ),
         NormalAppBar(templatePageTitle, true),

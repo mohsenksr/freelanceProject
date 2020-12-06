@@ -37,25 +37,32 @@ class _HomeRouteState extends State<HomeRoute> {
           Container(
             margin: EdgeInsets.only(
               top: appBarHeight + pagesTopMargin,
-              left: pagesRightAndLeftMargin(_width, _mobileView),
-              right: pagesRightAndLeftMargin(_width, _mobileView),
             ),
             alignment: Alignment.center,
-            child: Column(
-              children: [
-                Text(
-                  'home state: ' + _state.toString(),
-                  style: normalText,
+            child: SingleChildScrollView(
+              child: Container(
+                margin: EdgeInsets.only(
+                  bottom: pagesBottomMargin,
+                  left: pagesRightAndLeftMargin(_width, _mobileView),
+                  right: pagesRightAndLeftMargin(_width, _mobileView),
                 ),
-                RaisedButton(
-                  child: Text(
-                    'change state',
-                    style: normalText,
-                  ),
-                  onPressed: () => changeState(),
-                  color: themeColor,
+                child: Column(
+                  children: [
+                    Text(
+                      'home state: ' + _state.toString(),
+                      style: normalText,
+                    ),
+                    RaisedButton(
+                      child: Text(
+                        'change state',
+                        style: normalText,
+                      ),
+                      onPressed: () => changeState(),
+                      color: themeColor,
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
           kIsWeb ? HomeWebAppBar() : NormalAppBar(homePageAppBarTitle, false),

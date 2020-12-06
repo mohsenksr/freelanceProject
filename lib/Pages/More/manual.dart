@@ -17,13 +17,18 @@ class Manual extends StatelessWidget {
           alignment: Alignment.center,
           margin: EdgeInsets.only(
             top: appBarHeight + pagesTopMargin,
-            left: pagesRightAndLeftMargin(_width, _mobileView),
-            right: pagesRightAndLeftMargin(_width, _mobileView),
           ),
-          child: Column(
-            children: [
-              Text('manual'),
-            ],
+          child: Container(
+            margin: EdgeInsets.only(
+              bottom: pagesBottomMargin,
+              left: pagesRightAndLeftMargin(_width, _mobileView),
+              right: pagesRightAndLeftMargin(_width, _mobileView),
+            ),
+            child: Column(
+              children: [
+                Text('manual'),
+              ],
+            ),
           ),
         ),
         NormalAppBar(manualPageTitle, true),

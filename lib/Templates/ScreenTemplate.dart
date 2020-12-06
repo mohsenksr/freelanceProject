@@ -12,12 +12,19 @@ import 'package:project_new_style/Styles/colors.dart';
 class ScreenTemplate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    double _width = MediaQuery.of(context).size.width;
+    bool _mobileView = _width < mobileViewMaxWidth ? true : false;
+
     return Container(
       color: backgroundColor,
       child: Stack(children: [
         Container(
           alignment: Alignment.center,
-          margin: EdgeInsets.only(top: appBarHeight + pagesTopMargin),
+          margin: EdgeInsets.only(
+            top: appBarHeight + pagesTopMargin,
+            left: pagesRightAndLeftMargin(_width, _mobileView),
+            right: pagesRightAndLeftMargin(_width, _mobileView),
+          ),
           child: Column(
             children: [
               Text('this is just a template for creating new pages.'),

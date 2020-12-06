@@ -9,8 +9,9 @@ import 'package:project_new_style/Styles/textStyles.dart';
 
 class GridElement extends StatelessWidget {
   final MoreOption _moreOption;
+  final int blogPostId;
 
-  GridElement(this._moreOption);
+  GridElement(this._moreOption, {this.blogPostId});
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +51,14 @@ class GridElement extends StatelessWidget {
         pushNewScreenWithRouteSettings(
           context,
           settings: null,
-          screen: getScreen(_moreOption),
+          screen: blogPostId == null
+              ? getScreen(
+                  _moreOption,
+                )
+              : getScreen(
+                  _moreOption,
+                  blogPostId: blogPostId,
+                ),
           pageTransitionAnimation: PageTransitionAnimation.fade,
         );
       },

@@ -33,28 +33,32 @@ class Rules extends StatelessWidget {
                     alignment: Alignment.center,
                     margin: EdgeInsets.only(
                       top: appBarHeight + pagesTopMargin,
-                      left: pagesRightAndLeftMargin(_width, _mobileView),
-                      right: pagesRightAndLeftMargin(_width, _mobileView),
                     ),
                     child: SingleChildScrollView(
-                      child: Consumer<RuleProvider>(
-                        builder: (ctx, data, child) => Container(
-                          margin: EdgeInsets.only(bottom: pagesBottomMargin),
-                          child: Column(
-                            children: [
-                              ...(data.rules as List<Map<String, Object>>)
-                                  .map((item) {
-                                return Directionality(
-                                  textDirection: TextDirection.rtl,
-                                  child: MoreTextElement(
-                                    item,
-                                    'question',
-                                    'answer',
-                                    rulesIcon,
-                                  ),
-                                );
-                              }).toList(),
-                            ],
+                      child: Container(
+                        margin: EdgeInsets.only(
+                          bottom: pagesBottomMargin,
+                          left: pagesRightAndLeftMargin(_width, _mobileView),
+                          right: pagesRightAndLeftMargin(_width, _mobileView),
+                        ),
+                        child: Consumer<RuleProvider>(
+                          builder: (ctx, data, child) => Container(
+                            child: Column(
+                              children: [
+                                ...(data.rules as List<Map<String, Object>>)
+                                    .map((item) {
+                                  return Directionality(
+                                    textDirection: TextDirection.rtl,
+                                    child: MoreTextElement(
+                                      item,
+                                      'question',
+                                      'answer',
+                                      rulesIcon,
+                                    ),
+                                  );
+                                }).toList(),
+                              ],
+                            ),
                           ),
                         ),
                       ),

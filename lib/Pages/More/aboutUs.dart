@@ -36,13 +36,13 @@ class AboutUs extends StatelessWidget {
                     alignment: Alignment.center,
                     margin: EdgeInsets.only(
                       top: appBarHeight + pagesTopMargin,
-                      left: pagesRightAndLeftMargin(_width, _mobileView),
-                      right: pagesRightAndLeftMargin(_width, _mobileView),
                     ),
                     child: SingleChildScrollView(
                       child: Container(
                         margin: EdgeInsets.only(
                           bottom: pagesBottomMargin,
+                          left: pagesRightAndLeftMargin(_width, _mobileView),
+                          right: pagesRightAndLeftMargin(_width, _mobileView),
                         ),
                         child:
                             Consumer<AboutUsProvider>(builder: (ctx, d, child) {

@@ -76,7 +76,7 @@ String getText(moreOption) {
 
 //important comment: if any more page changes to stateful, switch case below must change.
 
-StatelessWidget getScreen(moreOption) {
+StatelessWidget getScreen(moreOption, {blogPostId}) {
   switch (moreOption) {
     case MoreOption.aboutUs:
       return AboutUs();
@@ -97,7 +97,12 @@ StatelessWidget getScreen(moreOption) {
       return Manual();
       break;
     case MoreOption.blog:
-      return Blog();
+      return blogPostId == null
+          ? Blog(0)
+          : Blog(
+              0,
+              postId: blogPostId,
+            );
       break;
     case MoreOption.softWareTeam:
       return SoftwareTeam();

@@ -35,13 +35,15 @@ class ContactUs extends StatelessWidget {
                     alignment: Alignment.center,
                     margin: EdgeInsets.only(
                       top: appBarHeight + pagesTopMargin,
-                      left: pagesRightAndLeftMargin(_width, _mobileView),
-                      right: pagesRightAndLeftMargin(_width, _mobileView),
                     ),
                     child: SingleChildScrollView(
                       child: Consumer<ContactUsProvider>(
                         builder: (ctx, data, child) => Container(
-                          margin: EdgeInsets.only(bottom: pagesBottomMargin),
+                          margin: EdgeInsets.only(
+                            bottom: pagesBottomMargin,
+                            left: pagesRightAndLeftMargin(_width, _mobileView),
+                            right: pagesRightAndLeftMargin(_width, _mobileView),
+                          ),
                           child: Column(
                             children: [
                               ...(data.contactUs as List<Map<String, Object>>)

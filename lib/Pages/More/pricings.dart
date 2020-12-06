@@ -17,13 +17,18 @@ class Pricings extends StatelessWidget {
           alignment: Alignment.center,
           margin: EdgeInsets.only(
             top: appBarHeight + pagesTopMargin,
-            left: pagesRightAndLeftMargin(_width, _mobileView),
-            right: pagesRightAndLeftMargin(_width, _mobileView),
           ),
-          child: Column(
-            children: [
-              Text('pricings'),
-            ],
+          child: Container(
+            margin: EdgeInsets.only(
+              bottom: pagesBottomMargin,
+              left: pagesRightAndLeftMargin(_width, _mobileView),
+              right: pagesRightAndLeftMargin(_width, _mobileView),
+            ),
+            child: Column(
+              children: [
+                Text('pricings'),
+              ],
+            ),
           ),
         ),
         NormalAppBar(pricingsPageTitle, true),

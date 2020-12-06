@@ -3,12 +3,13 @@ import 'package:project_new_style/Setting/numbers.dart';
 import 'package:project_new_style/Styles/colors.dart';
 import 'package:project_new_style/Styles/textStyles.dart';
 
-class BlogPost extends StatelessWidget {
+class BlogPostElement extends StatelessWidget {
   final String _imageUrl;
   final String _title;
   final String _date;
+  final String _time;
 
-  BlogPost(this._title, this._imageUrl, this._date);
+  BlogPostElement(this._title, this._imageUrl, this._date, this._time);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ class BlogPost extends StatelessWidget {
                     topLeft: Radius.circular(10),
                     topRight: Radius.circular(10)),
                 child: Image.network(
-                  'https://cdn.mashreghnews.ir/d/2017/04/09/2/1901522.jpg',
+                  _imageUrl,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -42,25 +43,49 @@ class BlogPost extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      _date,
-                      textDirection: TextDirection.rtl,
-                      style: TextStyle(
-                        fontFamily: mainFontFamily,
-                        fontSize: 14,
-                        color: Colors.grey,
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          _time,
+                          textDirection: TextDirection.rtl,
+                          style: TextStyle(
+                            fontFamily: mainFontFamily,
+                            fontSize: 14,
+                            color: Colors.grey,
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(left: 10),
+                          child: Icon(
+                            Icons.access_time,
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ],
                     ),
-                    // Spacer(),
-                    // FavoriteWidget()
-                    Container(
-                      margin: EdgeInsets.only(left: 20),
-                      child: Icon(
-                        Icons.calendar_today,
-                        color: Colors.grey,
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          _date,
+                          textDirection: TextDirection.rtl,
+                          style: TextStyle(
+                            fontFamily: mainFontFamily,
+                            fontSize: 14,
+                            color: Colors.grey,
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(left: 10),
+                          child: Icon(
+                            Icons.calendar_today,
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),

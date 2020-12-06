@@ -8,13 +8,14 @@ import '../../Setting/serverUrl.dart';
 import '../../models/ProviderModels/ruleModel.dart';
 
 class RuleProvider with ChangeNotifier {
-  List<Map<String, String>> _rules = [];
+  List<Map<String, String>> _rules;
 
   List<Map<String, String>> get rules {
     return [..._rules];
   }
 
   Future<void> fetchRules() async {
+    _rules = [];
     final url = rulesUrl;
     try {
       final response = await http.get(url);

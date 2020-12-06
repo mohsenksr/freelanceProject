@@ -9,13 +9,14 @@ import '../../Setting/serverUrl.dart';
 import '../../models/ProviderModels/faqModel.dart';
 
 class FaqProvider with ChangeNotifier {
-  List<Map<String, String>> _faq = [];
+  List<Map<String, String>> _faq;
 
   List<Map<String, String>> get faq {
     return [..._faq];
   }
 
   Future<void> fetchFaq() async {
+    _faq = [];
     final url = faqUrl;
     try {
       final response = await http.get(url);

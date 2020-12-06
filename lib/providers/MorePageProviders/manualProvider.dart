@@ -15,6 +15,7 @@ class ManualProvider with ChangeNotifier {
   }
 
   Future<void> fetchManual() async {
+    _manuals = [];
     final url = manualUrl;
     try {
       final response = await http.get(url);

@@ -7,13 +7,14 @@ import '../../Setting/serverUrl.dart';
 import '../../models/ProviderModels/contactUsModel.dart';
 
 class ContactUsProvider with ChangeNotifier {
-  List<Map<String, String>> _contactUs = [];
+  List<Map<String, String>> _contactUs;
 
   List<Map<String, String>> get contactUs {
     return [..._contactUs];
   }
 
   Future<void> fetchContactUs() async {
+    _contactUs = [];
     final url = contactUsUrl;
     try {
       final response = await http.get(url);

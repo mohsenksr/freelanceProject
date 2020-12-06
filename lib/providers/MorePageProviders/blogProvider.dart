@@ -8,13 +8,14 @@ import '../../Setting/serverUrl.dart';
 import '../../models/ProviderModels/blogModel.dart';
 
 class BlogProvider with ChangeNotifier {
-  List<BlogModel> _blogs = [];
+  List<BlogModel> _blogs;
 
   List<BlogModel> get blogs {
     return [..._blogs];
   }
 
-  Future<void> fetchAboutUs() async {
+  Future<void> fetchBlog() async {
+    _blogs = [];
     final url = blogUrl;
     try {
       final response = await http.get(url);

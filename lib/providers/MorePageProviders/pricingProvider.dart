@@ -8,13 +8,14 @@ import '../../Setting/serverUrl.dart';
 import '../../models/ProviderModels/pricingsModel.dart';
 
 class PricingProvider with ChangeNotifier {
-  List<PricingModel> _pricings = [];
+  List<PricingModel> _pricings;
 
   List<PricingModel> get pricings {
     return [..._pricings];
   }
 
   Future<void> fetchPricings() async {
+    _pricings = [];
     final url = pricingsUrl;
     try {
       final response = await http.get(url);

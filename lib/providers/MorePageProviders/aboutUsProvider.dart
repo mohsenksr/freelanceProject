@@ -8,7 +8,7 @@ import '../../Setting/serverUrl.dart';
 import '../../models/ProviderModels/aboutUsModel.dart';
 
 class AboutUsProvider with ChangeNotifier {
-  List<Map<String, String>> _aboutUs = [];
+  List<Map<String, String>> _aboutUs;
 
   List<Map<String, String>> get aboutUs {
     print(_aboutUs.length);
@@ -17,6 +17,7 @@ class AboutUsProvider with ChangeNotifier {
   }
 
   Future<void> fetchAboutUs() async {
+    _aboutUs = [];
     final url = aboutUsUrl;
     try {
       final response = await http.get(url);

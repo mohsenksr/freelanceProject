@@ -14,6 +14,7 @@ import 'package:project_new_style/Styles/colors.dart';
 import 'package:project_new_style/Styles/icons.dart';
 import 'package:project_new_style/Functions/mainFunctions.dart';
 import 'package:project_new_style/providers/MorePageProviders/aboutUsProvider.dart';
+import 'package:project_new_style/providers/MorePageProviders/blogPostProvider.dart';
 import 'package:project_new_style/providers/MorePageProviders/blogProvider.dart';
 import 'package:project_new_style/providers/MorePageProviders/contactUsProvider.dart';
 import 'package:project_new_style/providers/MorePageProviders/faqProvider.dart';
@@ -148,6 +149,7 @@ class _MainScreenState extends State<MainScreen> {
         ChangeNotifierProvider.value(value: PricingProvider()),
         ChangeNotifierProvider.value(value: RuleProvider()),
         ChangeNotifierProvider.value(value: BlogProvider()),
+        ChangeNotifierProvider.value(value: BlogPostProvider()),
       ],
       child: MaterialApp(
         home: Scaffold(

@@ -3,29 +3,41 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+
 import '../../Setting/serverUrl.dart';
 
-import '../../models/ProviderModels/blogModel.dart';
+class BlogPostProvider with ChangeNotifier {
+  bool _isLoading = true;
+  List<Map<String, Object>> _blogPost;
 
-class BlogProvider with ChangeNotifier {
-  List<Map<String, Object>> _blogs;
-
-  List<Map<String, Object>> get blogs {
-    return [..._blogs];
+  List<Map<String, Object>> get blogPost {
+    return [..._blogPost];
   }
 
-  Future<void> fetchBlog() async {
-    _blogs = [];
-    final url = blogUrl;
+  bool get isLoading {
+    return _isLoading;
+  }
+
+  Future<void> fetchBlogPost(int id) async {
+    _blogPost = [];
+    print("${id} this is idddddddddd");
+    _isLoading = true;
+    print(id);
+    final url = "$blogUrl/${id}";
+    print(url);
     try {
       final response = await http.get(url);
+      _isLoading = false;
+      print(response.statusCode);
       if (response.statusCode >= 400) {
         throw HttpException('Bad Connection');
       }
-      final responseData = json.decode(utf8.decode(response.bodyBytes)) as List<dynamic>;
+      final responseData =
+          json.decode(utf8.decode(response.bodyBytes)) as List<dynamic>;
+      print(responseData);
       if (responseData == null) return;
       responseData.forEach((element) {
-        _blogs.add({
+        _blogPost.add({
           'id': element['id'],
           'content': element['content'],
           'title': element['title'],

@@ -22,8 +22,9 @@ class ManualProvider with ChangeNotifier {
       if (response.statusCode >= 400) {
         throw HttpException('Bad Connection');
       }
+      print(url);
       final responseData =
-          json.decode(response.body) as List<Map<String, dynamic>>;
+          json.decode(utf8.decode(response.bodyBytes)) as List<dynamic>;
       if (responseData == null) return;
       responseData.forEach((element) {
         List<ManualEntry> tempEntry = [];
@@ -32,13 +33,14 @@ class ManualProvider with ChangeNotifier {
               id: ent['id'],
               title: ent['title'],
               description: ent['description'],
-              imageUrl: ent['imageUrl']));
+              imageUrl: ent['image']));
         });
         _manuals.add(
             ManualModel(title: element['manual_title'], entries: tempEntry));
       });
       notifyListeners();
     } catch (e) {
+      print(e);
       throw e;
     }
   }

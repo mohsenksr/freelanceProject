@@ -22,7 +22,9 @@ class PricingProvider with ChangeNotifier {
       if (response.statusCode >= 400) {
         throw HttpException('Bad Connection');
       }
-      final responseData = json.decode(response.body) as List<dynamic>;
+      print(url);
+      final responseData =
+          json.decode(utf8.decode(response.bodyBytes)) as List<dynamic>;
       if (responseData == null) return;
       responseData.forEach((element) {
         _pricings.add(PricingModel(
@@ -33,6 +35,7 @@ class PricingProvider with ChangeNotifier {
       });
       notifyListeners();
     } catch (e) {
+      print(e);
       throw e;
     }
   }

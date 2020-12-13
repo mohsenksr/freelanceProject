@@ -67,10 +67,12 @@ class _ManualEntry extends StatelessWidget {
             style: theme.textTheme.bodyText1,
           ),
         ),
-        if(manualEntry.imageUrl != null)
-          Image.network(manualEntry.imageUrl),
-        Divider(
-        ),
+        if (manualEntry.imageUrl != null)
+          ClipRRect(
+            borderRadius: BorderRadius.circular(10.0),
+            child: Image.network(manualEntry.imageUrl),
+          ),
+        Divider(),
       ],
     );
   }

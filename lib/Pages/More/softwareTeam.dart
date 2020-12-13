@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:project_new_style/AppBars/normalAppBar.dart';
 import 'package:project_new_style/Setting/numbers.dart';
 import 'package:project_new_style/Setting/strings.dart';
-import 'package:project_new_style/Styles/colors.dart';
 
 class SoftwareTeam extends StatelessWidget {
   @override
@@ -16,10 +15,11 @@ class SoftwareTeam extends StatelessWidget {
         Container(
           alignment: Alignment.center,
           margin: EdgeInsets.only(
-            top: appBarHeight + pagesTopMargin,
+            top: appBarHeight,
           ),
           child: Container(
             margin: EdgeInsets.only(
+              top: pagesTopMargin,
               bottom: pagesBottomMargin,
               left: pagesRightAndLeftMargin(_width, _mobileView),
               right: pagesRightAndLeftMargin(_width, _mobileView),

@@ -212,13 +212,15 @@ class _CustomExpansionTileState extends State<CustomExpansionTile>
   }
 
   Widget _buildChildren(BuildContext context, Widget child) {
+    ThemeData theme = Theme.of(context);
+
     return Container(
       decoration: BoxDecoration(
         color: _backgroundColor.value ?? Colors.transparent,
-        // border: Border.all(
-        //   color: Colors.black,
-        //   width: 2,
-        // ),
+        border: Border.all(
+          color: theme.cardTheme.shadowColor,
+          width: 2,
+        ),
         borderRadius: BorderRadius.circular(10.0),
       ),
       child: Column(

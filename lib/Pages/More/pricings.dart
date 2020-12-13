@@ -28,11 +28,12 @@ class Pricings extends StatelessWidget {
               Container(
                 // alignment: Alignment.center,
                 margin: EdgeInsets.only(
-                  top: appBarHeight + pagesTopMargin,
+                  top: appBarHeight,
                 ),
                 child: SingleChildScrollView(
                   child: Container(
                     margin: EdgeInsets.only(
+                      top: pagesTopMargin,
                       bottom: pagesBottomMargin,
                       left: pagesRightAndLeftMargin(_width, _mobileView),
                       right: pagesRightAndLeftMargin(_width, _mobileView),

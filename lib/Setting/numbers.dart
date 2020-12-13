@@ -1,5 +1,5 @@
 double appBarHeight = 80;
-double pagesTopMargin = 0;
+double pagesTopMargin = 20;
 double pagesBottomMargin = 20;
 double mobileViewMaxWidth = 800;
 

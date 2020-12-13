@@ -5,12 +5,18 @@ ThemeData defaultTheme = ThemeData(
   primaryColor: Color.fromRGBO(232, 93, 4, 1),
   backgroundColor: Color.fromRGBO(255, 235, 235, 1),
   // primarySwatch: Colors.pink,
+
   cardColor: Color.fromRGBO(141, 153, 174, 1),
   cardTheme: CardTheme(
       color: Color.fromRGBO(141, 153, 174, 1),
       shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15.0),
-          side: BorderSide(width: 3, color: Color.fromRGBO(43, 45, 66, 1))),
+        borderRadius: BorderRadius.circular(15.0),
+        side: BorderSide(
+          width: 3,
+          color: Color.fromRGBO(43, 45, 66, 1),
+        ),
+      ),
+      shadowColor:  Color.fromRGBO(43, 45, 66, 1),
       elevation: 3),
   appBarTheme: AppBarTheme(
     color: Color.fromRGBO(217, 4, 41, 1),

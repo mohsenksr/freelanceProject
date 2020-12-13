@@ -5,7 +5,6 @@ import 'package:project_new_style/Components/customIndicator.dart';
 import 'package:project_new_style/Components/moreTextElement.dart';
 import 'package:project_new_style/Setting/numbers.dart';
 import 'package:project_new_style/Setting/strings.dart';
-import 'package:project_new_style/Styles/colors.dart';
 import 'package:project_new_style/Styles/icons.dart';
 import 'package:project_new_style/providers/MorePageProviders/rulesProvider.dart';
 import 'package:provider/provider.dart';
@@ -32,11 +31,12 @@ class Rules extends StatelessWidget {
                   Container(
                     alignment: Alignment.center,
                     margin: EdgeInsets.only(
-                      top: appBarHeight + pagesTopMargin,
+                      top: appBarHeight,
                     ),
                     child: SingleChildScrollView(
                       child: Container(
                         margin: EdgeInsets.only(
+                          top: pagesTopMargin,
                           bottom: pagesBottomMargin,
                           left: pagesRightAndLeftMargin(_width, _mobileView),
                           right: pagesRightAndLeftMargin(_width, _mobileView),

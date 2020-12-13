@@ -5,8 +5,6 @@ import 'package:project_new_style/Components/customIndicator.dart';
 import 'package:project_new_style/Functions/moreFunctions.dart';
 import 'package:project_new_style/Setting/numbers.dart';
 import 'package:project_new_style/Setting/strings.dart';
-import 'package:project_new_style/Styles/colors.dart';
-import 'package:project_new_style/Styles/textStyles.dart';
 import 'package:project_new_style/providers/MorePageProviders/blogPostProvider.dart';
 import 'package:provider/provider.dart';
 
@@ -83,11 +81,12 @@ class _BlogPostState extends State<BlogPost> {
                     Container(
                       alignment: Alignment.center,
                       margin: EdgeInsets.only(
-                        top: appBarHeight + pagesTopMargin,
+                        top: appBarHeight,
                       ),
                       child: SingleChildScrollView(
                         child: Container(
                           margin: EdgeInsets.only(
+                            top: pagesTopMargin,
                             bottom: pagesBottomMargin,
                             left: pagesRightAndLeftMargin(_width, _mobileView),
                             right: pagesRightAndLeftMargin(_width, _mobileView),

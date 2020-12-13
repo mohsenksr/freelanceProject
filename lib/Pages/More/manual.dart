@@ -3,9 +3,7 @@ import 'package:project_new_style/AppBars/normalAppBar.dart';
 import 'package:project_new_style/Components/manualWidget.dart';
 import 'package:project_new_style/Setting/numbers.dart';
 import 'package:project_new_style/Setting/strings.dart';
-import 'package:project_new_style/Styles/colors.dart';
 import 'package:provider/provider.dart';
-
 import '../../Components/customErrorWidget.dart';
 import '../../Components/customIndicator.dart';
 import '../../providers/MorePageProviders/manualProvider.dart';
@@ -33,11 +31,12 @@ class Manual extends StatelessWidget {
                 Container(
                   // alignment: Alignment.center,
                   margin: EdgeInsets.only(
-                    top: appBarHeight + pagesTopMargin,
+                    top: appBarHeight,
                   ),
                   child: SingleChildScrollView(
                     child: Container(
                       margin: EdgeInsets.only(
+                        top: pagesTopMargin,
                         bottom: pagesBottomMargin,
                         left: pagesRightAndLeftMargin(_width, _mobileView),
                         right: pagesRightAndLeftMargin(_width, _mobileView),

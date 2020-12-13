@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:project_new_style/Setting/strings.dart';
-import 'package:project_new_style/Styles/colors.dart';
 import 'package:project_new_style/Styles/textStyles.dart';
 
 class HomeWebAppBar extends StatelessWidget {

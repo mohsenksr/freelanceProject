@@ -28,12 +28,11 @@ class Pricings extends StatelessWidget {
               Container(
                 // alignment: Alignment.center,
                 margin: EdgeInsets.only(
-                  top: appBarHeight,
+                  top: appBarHeight + pagesTopMargin,
                 ),
                 child: SingleChildScrollView(
                   child: Container(
                     margin: EdgeInsets.only(
-                      top: pagesTopMargin,
                       bottom: pagesBottomMargin,
                       left: pagesRightAndLeftMargin(_width, _mobileView),
                       right: pagesRightAndLeftMargin(_width, _mobileView),
@@ -42,8 +41,11 @@ class Pricings extends StatelessWidget {
                       children: [
                         ...data.pricings
                             .map(
-                              (e) => PricingsWidget(
-                                pricingModel: e,
+                              (e) => Directionality(
+                                textDirection: TextDirection.rtl,
+                                child: PricingsWidget(
+                                  pricingModel: e,
+                                ),
                               ),
                             )
                             .toList(),

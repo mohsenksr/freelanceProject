@@ -269,27 +269,27 @@ class _BlogState extends State<Blog> {
                                     CustomRaisedButton(
                                       onPressed: () => {
                                         pushNewScreenWithRouteSettings(
-                                                context,
-                                                settings: null,
-                                                screen:
-                                                    Blog(widget._pageIndex + 1),
-                                                pageTransitionAnimation:
-                                                    PageTransitionAnimation
-                                                        .fade,
-                                              ),
+                                          context,
+                                          settings: null,
+                                          screen: Blog(widget._pageIndex + 1),
+                                          pageTransitionAnimation:
+                                              PageTransitionAnimation.fade,
+                                        ),
                                       },
                                       title: "صفحه بعد",
                                       isDisabled: widget._pageIndex ==
-                                                    (data.blogs.length / 5)
-                                                        .round() ||
-                                                (widget._pageIndex + 1) * 5 ==
-                                                    data.blogs.length
-                                            ? true
-                                            : false,
+                                                  (data.blogs.length / 5)
+                                                      .round() ||
+                                              (widget._pageIndex + 1) * 5 ==
+                                                  data.blogs.length
+                                          ? true
+                                          : false,
                                     ),
                                     Text(
                                       'صفحه ' +
-                                          (widget._pageIndex + 1).toString(),
+                                          getPersianNumbers(
+                                              (widget._pageIndex + 1)
+                                                  .toString()),
                                       style: TextStyle(
                                         fontFamily: mainFontFamily,
                                         fontWeight: FontWeight.bold,

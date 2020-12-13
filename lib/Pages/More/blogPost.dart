@@ -201,7 +201,9 @@ class _BlogPostState extends State<BlogPost> {
                                                 ),
                                               ),
                                             ),
-                                            onTap: () => {},
+                                            onTap: () => {
+                                              //TODO
+                                            },
                                           ),
                                         ],
                                       )

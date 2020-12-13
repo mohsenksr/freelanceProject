@@ -3,7 +3,6 @@ import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:project_new_style/Components/CustomRaisedButton.dart';
 import 'package:project_new_style/Pages/More/blogPost.dart';
 import 'package:project_new_style/Setting/numbers.dart';
-import 'package:project_new_style/Styles/colors.dart';
 import 'package:project_new_style/Styles/textStyles.dart';
 
 class BlogPostElement extends StatelessWidget {

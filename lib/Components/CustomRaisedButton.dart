@@ -6,7 +6,7 @@ class CustomRaisedButton extends StatefulWidget {
   final Function onPressed;
   final bool isDisabled;
 
-  CustomRaisedButton({this.title, @required this.onPressed, this.isDisabled});
+  CustomRaisedButton({this.title, @required this.onPressed, this.isDisabled = false});
 
   _CustomRaisedButtonState createState() => _CustomRaisedButtonState(
       text: this.title, onpressedFunction: onPressed, isDisabled: isDisabled);

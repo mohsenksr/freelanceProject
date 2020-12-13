@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_new_style/Components/CustomRaisedButton.dart';
 import 'package:project_new_style/Setting/strings.dart';
 import 'package:project_new_style/Styles/textStyles.dart';
 
@@ -75,34 +76,24 @@ class HomeWebAppBar extends StatelessWidget {
                 //       )),
                 //   onTap: () => {},
                 // ),
-                RaisedButton(
-                  onPressed: () => {},
-                  child: Container(
-                        padding: EdgeInsets.all(3),
-                        child: Text(
-                          homePageAppBarPricings,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontFamily: mainFontFamily,
-                            fontSize: 12,
-                          ),
-                        ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 2.0),
+                  child: CustomRaisedButton(
+                    onPressed: () => {},
+                    title: homePageAppBarPricings,
+                    isDisabled: false,
                   ),
                 ),
-                RaisedButton(
-                  onPressed: () => {},
-                  child: Container(
-                        padding: EdgeInsets.all(3),
-                        child: Text(
-                          homePageAppBarInstallApp,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontFamily: mainFontFamily,
-                            fontSize: 12,
-                          ),
-                        ),
+
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 2.0),
+                  child: CustomRaisedButton(
+                    onPressed: () => {},
+                    title: homePageAppBarInstallApp,
+                    isDisabled: false,
                   ),
                 ),
+
                 Expanded(
                   child: SizedBox.shrink(),
                 ),

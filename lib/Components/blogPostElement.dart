@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:project_new_style/Components/CustomRaisedButton.dart';
 import 'package:project_new_style/Pages/More/blogPost.dart';
 import 'package:project_new_style/Setting/numbers.dart';
 import 'package:project_new_style/Styles/colors.dart';
@@ -125,7 +126,7 @@ class BlogPostElement extends StatelessWidget {
                     //     ),
                     //   },
                     // ),
-                    RaisedButton(
+                    CustomRaisedButton(
                       onPressed: () => {
                         pushNewScreenWithRouteSettings(
                           context,
@@ -134,11 +135,9 @@ class BlogPostElement extends StatelessWidget {
                           pageTransitionAnimation: PageTransitionAnimation.fade,
                         )
                       },
-                      child: Text(
+                      title: 
                         'ادامه مطلب',
-                        textDirection: TextDirection.rtl,
-                        style: TextStyle(fontFamily: mainFontFamily),
-                      ),
+                      isDisabled: false,
                     ),
                   ],
                 )

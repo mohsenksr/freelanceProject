@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:project_new_style/AppBars/normalAppBar.dart';
+import 'package:project_new_style/Components/CustomRaisedButton.dart';
 import 'package:project_new_style/Components/blogPostElement.dart';
 import 'package:project_new_style/Components/customErrorWidget.dart';
 import 'package:project_new_style/Components/customIndicator.dart';
@@ -165,7 +166,7 @@ class _BlogState extends State<Blog> {
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
     bool _mobileView = _width < mobileViewMaxWidth ? true : false;
-    ThemeData _theme = Theme.of(context);
+    ThemeData theme = Theme.of(context);
 
     return FutureBuilder(
         future: Provider.of<BlogProvider>(context, listen: false).fetchBlog(),
@@ -177,7 +178,7 @@ class _BlogState extends State<Blog> {
               return CustomErrorWidget();
             } else {
               return Container(
-                color: _theme.backgroundColor,
+                color: theme.backgroundColor,
                 child: Stack(children: [
                   Container(
                     alignment: Alignment.center,
@@ -233,8 +234,8 @@ class _BlogState extends State<Blog> {
                                     //                     .round() ||
                                     //             (widget._pageIndex + 1) * 5 ==
                                     //                 data.blogs.length
-                                    //         ? _theme.disabledColor
-                                    //         : _theme.buttonColor,
+                                    //         ? theme.disabledColor
+                                    //         : theme.buttonColor,
                                     //     child: Container(
                                     //       margin: EdgeInsets.all(10),
                                     //       child: Text(
@@ -265,15 +266,9 @@ class _BlogState extends State<Blog> {
                                     //           ),
                                     //   },
                                     // ),
-                                    RaisedButton(
+                                    CustomRaisedButton(
                                       onPressed: () => {
-                                        widget._pageIndex ==
-                                                    (data.blogs.length / 5)
-                                                        .round() ||
-                                                (widget._pageIndex + 1) * 5 ==
-                                                    data.blogs.length
-                                            ? null
-                                            : pushNewScreenWithRouteSettings(
+                                        pushNewScreenWithRouteSettings(
                                                 context,
                                                 settings: null,
                                                 screen:
@@ -283,10 +278,14 @@ class _BlogState extends State<Blog> {
                                                         .fade,
                                               ),
                                       },
-                                      child: Text(
-                                        "صفحه بعد",
-                                        textAlign: TextAlign.center,
-                                      ),
+                                      title: "صفحه بعد",
+                                      isDisabled: widget._pageIndex ==
+                                                    (data.blogs.length / 5)
+                                                        .round() ||
+                                                (widget._pageIndex + 1) * 5 ==
+                                                    data.blogs.length
+                                            ? true
+                                            : false,
                                     ),
                                     Text(
                                       'صفحه ' +
@@ -296,25 +295,21 @@ class _BlogState extends State<Blog> {
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                    RaisedButton(
+                                    CustomRaisedButton(
                                       onPressed: () => {
-                                        widget._pageIndex == 0
-                                            ? null
-                                            : pushNewScreenWithRouteSettings(
-                                                context,
-                                                settings: null,
-                                                screen:
-                                                    Blog(widget._pageIndex - 1),
-                                                pageTransitionAnimation:
-                                                    PageTransitionAnimation
-                                                        .fade,
-                                              )
+                                        pushNewScreenWithRouteSettings(
+                                          context,
+                                          settings: null,
+                                          screen: Blog(widget._pageIndex - 1),
+                                          pageTransitionAnimation:
+                                              PageTransitionAnimation.fade,
+                                        )
                                       },
-                                      child: Text(
-                                        "صفحه قبل",
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    )
+                                      title: "صفحه قبل",
+                                      isDisabled:
+                                          widget._pageIndex <= 0 ? true : false,
+                                    ),
+
                                     // InkWell(
                                     //   child: Card(
                                     //     shape: RoundedRectangleBorder(
@@ -324,8 +319,8 @@ class _BlogState extends State<Blog> {
                                     //           BorderRadius.circular(5),
                                     //     ),
                                     //     color: widget._pageIndex == 0
-                                    //         ? _theme.disabledColor
-                                    //         : _theme.buttonColor,
+                                    //         ? theme.disabledColor
+                                    //         : theme.buttonColor,
                                     //     child: Container(
                                     //         margin: EdgeInsets.all(10),
                                     //         child: Text(

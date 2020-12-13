@@ -5,7 +5,6 @@ ThemeData defaultTheme = ThemeData(
   primaryColor: Color.fromRGBO(232, 93, 4, 1),
   backgroundColor: Color.fromRGBO(255, 235, 235, 1),
   // primarySwatch: Colors.pink,
-
   cardColor: Color.fromRGBO(141, 153, 174, 1),
   cardTheme: CardTheme(
       color: Color.fromRGBO(141, 153, 174, 1),
@@ -28,10 +27,10 @@ ThemeData defaultTheme = ThemeData(
   disabledColor: Colors.grey,
   // buttonColor: Color.fromRGBO(237, 242, 244, 1),
   buttonTheme: ButtonThemeData(
-    buttonColor: Color.fromRGBO(239, 35, 60, 1),
+    buttonColor: Color.fromRGBO(43, 45, 66, 1),
     disabledColor: Colors.grey,
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(15.0),
+      borderRadius: BorderRadius.circular(10.0),
     ),
     textTheme: ButtonTextTheme.primary,
   ),

@@ -7,45 +7,43 @@ class PricingsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-      elevation: 5,
-      color: Colors.teal,
-      child: Directionality(
-        textDirection: TextDirection.rtl,
-        child: Container(
-          decoration: BoxDecoration(
-              border: Border.all(
-                width: 2,
+    ThemeData theme = Theme.of(context);
+
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 1),
+      child: Card(
+          child: Directionality(
+            textDirection: TextDirection.rtl,
+            child: Container(
+              padding: EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    pricingModel.title,
+                    style: theme.textTheme.headline6,
+                  ),
+                  Text(
+                    pricingModel.description,
+                    style: theme.textTheme.bodyText1,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 5.0),
+                    child: Divider(
+                      thickness: 2,
+                    ),
+                  ),
+                  Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+                    Text(
+                      "هزینه: ${pricingModel.price}",
+                      style: theme.textTheme.subtitle2,
+                      textDirection: TextDirection.rtl,
+                    ),
+                  ]),
+                ],
               ),
-              borderRadius: BorderRadius.circular(10.0)),
-          padding: EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                pricingModel.title,
-                style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
-              ),
-              Text(
-                pricingModel.description,
-                style: TextStyle(fontSize: 14, color: Colors.white),
-              ),
-              Divider(
-                color: Colors.black,
-              ),
-              Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-                Text(
-                  "هزینه: ${pricingModel.price}",
-                  style: TextStyle(color: Colors.white70),
-                ),
-              ]),
-            ],
+            ),
           ),
-        ),
       ),
     );
   }

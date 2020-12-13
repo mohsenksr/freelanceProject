@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_new_style/Styles/colors.dart';
 import 'package:project_new_style/Styles/textStyles.dart';
-
 
 class MoreTextElement extends StatelessWidget {
   final Map<String, Object> item;
@@ -18,27 +16,19 @@ class MoreTextElement extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData theme = Theme.of(context);
+
     return Column(
       children: [
         Card(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-          color: lightThemeColor,
-          elevation: 10,
           margin: EdgeInsets.symmetric(
             vertical: 1,
-            horizontal: 5,
+            horizontal: 3,
           ),
           child: Container(
             padding: EdgeInsets.symmetric(
               vertical: 5,
               horizontal: 10,
-            ),
-            decoration: BoxDecoration(
-              border: Border.all(
-                width: 3,
-              ),
-              borderRadius: BorderRadius.circular(15),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,14 +43,10 @@ class MoreTextElement extends StatelessWidget {
                       child: Container(
                         width: double.infinity,
                         padding: const EdgeInsets.symmetric(
-                            vertical: 2, horizontal: 5),
+                            vertical: 10, horizontal: 5),
                         child: Text(
                           item[headerKey],
-                          style: TextStyle(
-                            fontFamily: mainFontFamily,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
+                          style: theme.textTheme.headline6
                         ),
                       ),
                     ),
@@ -68,23 +54,22 @@ class MoreTextElement extends StatelessWidget {
                 ),
                 Divider(
                   height: 10,
-                  color: Colors.black,
                   thickness: 3,
                 ),
-                Text(
-                  item[contentKey],
-                  style: TextStyle(
-                    fontFamily: mainFontFamily,
-                    color: Colors.white,
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Text(
+                    item[contentKey],
+                    style: theme.textTheme.bodyText1
                   ),
                 ),
               ],
             ),
           ),
         ),
-        Divider(
-          height: 10,
-        )
+        // Divider(
+        //   height: 10,
+        // )
       ],
     );
   }

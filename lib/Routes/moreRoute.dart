@@ -58,7 +58,8 @@ class _MoreRouteState extends State<MoreRoute> {
     bool _mobileView = _width < mobileViewMaxWidth ? true : false;
 
     return Container(
-      color: backgroundColor,
+      // color: backgroundColor,
+      color: Theme.of(context).backgroundColor,
       child: Stack(
         children: [
           GridView.count(

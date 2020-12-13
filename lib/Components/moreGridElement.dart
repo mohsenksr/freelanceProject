@@ -4,7 +4,6 @@ import 'package:project_new_style/Enums/moreOptionsEnum.dart';
 import 'package:project_new_style/Functions/moreFunctions.dart';
 import 'package:project_new_style/Setting/numbers.dart';
 
-import 'package:project_new_style/Styles/colors.dart';
 import 'package:project_new_style/Styles/textStyles.dart';
 
 class GridElement extends StatelessWidget {
@@ -20,11 +19,6 @@ class GridElement extends StatelessWidget {
 
     return InkWell(
       child: Card(
-        shape: RoundedRectangleBorder(
-          side: BorderSide(color: Colors.black, width: 5),
-          borderRadius: BorderRadius.circular(20),
-        ),
-        color: themeColor,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [

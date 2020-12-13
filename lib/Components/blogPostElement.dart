@@ -19,10 +19,12 @@ class BlogPostElement extends StatelessWidget {
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
     bool _mobileView = _width < mobileViewMaxWidth ? true : false;
+    ThemeData theme = Theme.of(context);
 
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       elevation: 3,
+      color: Colors.white,
       child: Column(
         children: [
           AspectRatio(
@@ -55,17 +57,12 @@ class BlogPostElement extends StatelessWidget {
                         Text(
                           _time,
                           textDirection: TextDirection.rtl,
-                          style: TextStyle(
-                            fontFamily: mainFontFamily,
-                            fontSize: 14,
-                            color: Colors.grey,
-                          ),
+                          style: theme.textTheme.subtitle1,
                         ),
                         Container(
                           margin: EdgeInsets.only(left: 10),
                           child: Icon(
                             Icons.access_time,
-                            color: Colors.grey,
                           ),
                         ),
                       ],
@@ -76,17 +73,12 @@ class BlogPostElement extends StatelessWidget {
                         Text(
                           _date,
                           textDirection: TextDirection.rtl,
-                          style: TextStyle(
-                            fontFamily: mainFontFamily,
-                            fontSize: 14,
-                            color: Colors.grey,
-                          ),
+                          style: theme.textTheme.subtitle1,
                         ),
                         Container(
                           margin: EdgeInsets.only(left: 10),
                           child: Icon(
                             Icons.calendar_today,
-                            color: Colors.grey,
                           ),
                         ),
                       ],
@@ -109,29 +101,44 @@ class BlogPostElement extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    InkWell(
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                          side: BorderSide(color: Colors.black, width: 2),
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        color: themeColor,
-                        child: Container(
-                            margin: EdgeInsets.all(10),
-                            child: Text(
-                              'ادامه مطلب',
-                              textDirection: TextDirection.rtl,
-                              style: TextStyle(fontFamily: mainFontFamily),
-                            )),
-                      ),
-                      onTap: () => {
+                    // InkWell(
+                    //   child: Card(
+                    //     shape: RoundedRectangleBorder(
+                    //       side: BorderSide(color: Colors.black, width: 2),
+                    //       borderRadius: BorderRadius.circular(5),
+                    //     ),
+                    //     color: themeColor,
+                    //     child: Container(
+                    //         margin: EdgeInsets.all(10),
+                    //         child: Text(
+                    //           'ادامه مطلب',
+                    //           textDirection: TextDirection.rtl,
+                    //           style: TextStyle(fontFamily: mainFontFamily),
+                    //         )),
+                    //   ),
+                    //   onTap: () => {
+                    //     pushNewScreenWithRouteSettings(
+                    //       context,
+                    //       settings: null,
+                    //       screen: BlogPost(_postId),
+                    //       pageTransitionAnimation: PageTransitionAnimation.fade,
+                    //     ),
+                    //   },
+                    // ),
+                    RaisedButton(
+                      onPressed: () => {
                         pushNewScreenWithRouteSettings(
                           context,
                           settings: null,
                           screen: BlogPost(_postId),
                           pageTransitionAnimation: PageTransitionAnimation.fade,
-                        ),
+                        )
                       },
+                      child: Text(
+                        'ادامه مطلب',
+                        textDirection: TextDirection.rtl,
+                        style: TextStyle(fontFamily: mainFontFamily),
+                      ),
                     ),
                   ],
                 )

@@ -8,8 +8,19 @@ class HomeWebAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData theme = Theme.of(context);
+
     return Container(
-      color: themeColor,
+      decoration: BoxDecoration(
+        color: theme.appBarTheme.color,
+        boxShadow: [
+          BoxShadow(
+              offset: Offset(0.0, 2.0),
+              color: theme.appBarTheme.shadowColor,
+              blurRadius: 5.0),
+        ],
+      ),
+      // color: theme.appBarTheme.color,
       width: double.infinity,
       height: 80,
       child: Column(
@@ -25,35 +36,50 @@ class HomeWebAppBar extends StatelessWidget {
                   width: 80,
                   height: 40,
                 ),
-                InkWell(
-                  child: Card(
-                      shape: RoundedRectangleBorder(
-                        side: BorderSide(color: Colors.black, width: 2),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      color: themeColor,
-                      child: Container(
-                        padding: EdgeInsets.all(10),
-                        child: Text(
-                          homePageAppBarInstallApp,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontFamily: mainFontFamily,
-                            fontSize: 12,
-                          ),
-                        ),
-                      )),
-                  onTap: () {},
-                ),
-                InkWell(
-                  child: Card(
-                      shape: RoundedRectangleBorder(
-                        side: BorderSide(color: Colors.black, width: 2),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      color: themeColor,
-                      child: Container(
-                        padding: EdgeInsets.all(10),
+                // InkWell(
+                //   child: Card(
+                //       shape: RoundedRectangleBorder(
+                //         side: BorderSide(color: Colors.black, width: 2),
+                //         borderRadius: BorderRadius.circular(20),
+                //       ),
+                //       color: themeColor,
+                //       child: Container(
+                //         padding: EdgeInsets.all(10),
+                //         child: Text(
+                //           homePageAppBarInstallApp,
+                //           style: TextStyle(
+                //             color: Colors.white,
+                //             fontFamily: mainFontFamily,
+                //             fontSize: 12,
+                //           ),
+                //         ),
+                //       )),
+                //   onTap: () {},
+                // ),
+                // InkWell(
+                //   child: Card(
+                //       shape: RoundedRectangleBorder(
+                //         side: BorderSide(color: Colors.black, width: 2),
+                //         borderRadius: BorderRadius.circular(20),
+                //       ),
+                //       color: themeColor,
+                //       child: Container(
+                //         padding: EdgeInsets.all(10),
+                //         child: Text(
+                //           homePageAppBarPricings,
+                //           style: TextStyle(
+                //             color: Colors.white,
+                //             fontFamily: mainFontFamily,
+                //             fontSize: 12,
+                //           ),
+                //         ),
+                //       )),
+                //   onTap: () => {},
+                // ),
+                RaisedButton(
+                  onPressed: () => {},
+                  child: Container(
+                        padding: EdgeInsets.all(3),
                         child: Text(
                           homePageAppBarPricings,
                           style: TextStyle(
@@ -62,8 +88,21 @@ class HomeWebAppBar extends StatelessWidget {
                             fontSize: 12,
                           ),
                         ),
-                      )),
-                  onTap: () => {},
+                  ),
+                ),
+                RaisedButton(
+                  onPressed: () => {},
+                  child: Container(
+                        padding: EdgeInsets.all(3),
+                        child: Text(
+                          homePageAppBarInstallApp,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: mainFontFamily,
+                            fontSize: 12,
+                          ),
+                        ),
+                  ),
                 ),
                 Expanded(
                   child: SizedBox.shrink(),

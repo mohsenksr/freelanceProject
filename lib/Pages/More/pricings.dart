@@ -5,7 +5,6 @@ import 'package:project_new_style/Components/customIndicator.dart';
 import 'package:project_new_style/Components/pricingsWidget.dart';
 import 'package:project_new_style/Setting/numbers.dart';
 import 'package:project_new_style/Setting/strings.dart';
-import 'package:project_new_style/Styles/colors.dart';
 import 'package:project_new_style/providers/MorePageProviders/pricingProvider.dart';
 import 'package:provider/provider.dart';
 
@@ -24,30 +23,33 @@ class Pricings extends StatelessWidget {
         if (snapshot.hasError) return CustomErrorWidget();
         return Consumer<PricingProvider>(
           builder: (context, data, child) => Container(
-            color: backgroundColor,
+            color: Theme.of(context).backgroundColor,
             child: Stack(children: [
               Container(
-                alignment: Alignment.center,
+                // alignment: Alignment.center,
                 margin: EdgeInsets.only(
                   top: appBarHeight + pagesTopMargin,
                 ),
-                child: Container(
+                child: SingleChildScrollView(
+                  child: Container(
                     margin: EdgeInsets.only(
                       bottom: pagesBottomMargin,
                       left: pagesRightAndLeftMargin(_width, _mobileView),
                       right: pagesRightAndLeftMargin(_width, _mobileView),
                     ),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          ...data.pricings
-                              .map((e) => PricingsWidget(
-                                    pricingModel: e,
-                                  ))
-                              .toList(),
-                        ],
-                      ),
-                    )),
+                    child: Column(
+                      children: [
+                        ...data.pricings
+                            .map(
+                              (e) => PricingsWidget(
+                                pricingModel: e,
+                              ),
+                            )
+                            .toList(),
+                      ],
+                    ),
+                  ),
+                ),
               ),
               NormalAppBar(pricingsPageTitle, true),
             ]),

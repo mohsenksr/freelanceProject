@@ -27,7 +27,7 @@ class Faq extends StatelessWidget {
               return CustomErrorWidget();
             } else {
               return Container(
-                color: backgroundColor,
+                color:  Theme.of(context).backgroundColor,
                 child: Stack(children: [
                   Container(
                     alignment: Alignment.center,

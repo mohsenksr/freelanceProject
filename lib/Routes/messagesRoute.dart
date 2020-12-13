@@ -29,7 +29,7 @@ class _MessagesRouteState extends State<MessagesRoute> {
     bool _mobileView = _width < mobileViewMaxWidth ? true : false;
 
     return Container(
-      color: backgroundColor,
+      color: Theme.of(context).backgroundColor,
       child: Stack(
         children: [
           Container(
@@ -56,7 +56,6 @@ class _MessagesRouteState extends State<MessagesRoute> {
                         style: normalText,
                       ),
                       onPressed: () => changeState(),
-                      color: themeColor,
                     ),
                   ],
                 ),

@@ -29,9 +29,9 @@ class _HomeRouteState extends State<HomeRoute> {
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
     bool _mobileView = _width < mobileViewMaxWidth ? true : false;
-
+    
     return Container(
-      color: backgroundColor,
+      color: Theme.of(context).backgroundColor,
       child: Stack(
         children: [
           Container(
@@ -58,7 +58,7 @@ class _HomeRouteState extends State<HomeRoute> {
                         style: normalText,
                       ),
                       onPressed: () => changeState(),
-                      color: themeColor,
+                      
                     ),
                   ],
                 ),

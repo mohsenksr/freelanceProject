@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:project_new_style/Styles/colors.dart';
 
 class CustomIndicator extends StatelessWidget {
   @override
@@ -7,7 +6,7 @@ class CustomIndicator extends StatelessWidget {
     return Scaffold(
         body: Center(
       child: CircularProgressIndicator(
-        backgroundColor: themeColor,
+        backgroundColor: Theme.of(context).primaryColor,
         valueColor: AlwaysStoppedAnimation<Color>(Colors.grey),
       ),
     ));

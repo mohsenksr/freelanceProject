@@ -16,7 +16,7 @@ class ManualWidget extends StatelessWidget {
         // decoration: BoxDecoration(border: Border.all(width: 1)),
         padding: const EdgeInsets.all(2.0),
         child: CustomExpansionTile(
-          backgroundColor: Colors.teal,
+          backgroundColor: Theme.of(context).cardColor,
           childrenPadding: EdgeInsets.all(16),
           title: Text(
             manualModel.title,
@@ -37,6 +37,8 @@ class _ManualEntry extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData theme = Theme.of(context);
+
     return Column(
       children: [
         Container(
@@ -55,20 +57,19 @@ class _ManualEntry extends StatelessWidget {
           ),
           child: Text(
             manualEntry.title,
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            style: theme.textTheme.headline5,
           ),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 12.0),
           child: Text(
             manualEntry.description,
-            style: TextStyle(fontSize: 14),
+            style: theme.textTheme.bodyText1,
           ),
         ),
         if(manualEntry.imageUrl != null)
           Image.network(manualEntry.imageUrl),
         Divider(
-          color: Colors.white,
         ),
       ],
     );

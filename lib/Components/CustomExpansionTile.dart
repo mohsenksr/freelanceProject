@@ -212,16 +212,13 @@ class _CustomExpansionTileState extends State<CustomExpansionTile>
   }
 
   Widget _buildChildren(BuildContext context, Widget child) {
-    final Color borderSideColor = _borderColor.value ?? Colors.transparent;
-
     return Container(
       decoration: BoxDecoration(
         color: _backgroundColor.value ?? Colors.transparent,
-        // border: Border(
-        //   top: BorderSide(color: borderSideColor),
-        //   bottom: BorderSide(color: borderSideColor),
+        // border: Border.all(
+        //   color: Colors.black,
+        //   width: 2,
         // ),
-        border: Border.all(color: Colors.black, width: 2), //Todo Don't HARDCODE
         borderRadius: BorderRadius.circular(10.0),
       ),
       child: Column(
@@ -258,18 +255,17 @@ class _CustomExpansionTileState extends State<CustomExpansionTile>
   @override
   void didChangeDependencies() {
     final ThemeData theme = Theme.of(context);
-    //Todo Change this colors. Don't HardCOde :D
     _borderColorTween
       ..begin = theme.dividerColor
       ..end = theme.dividerColor;
     _headerColorTween
-      ..begin = theme.textTheme.subtitle1.color
+      ..begin = theme.textTheme.bodyText1.color
       ..end = theme.accentColor;
     _iconColorTween
-      ..begin = theme.unselectedWidgetColor
+      ..begin = theme.textTheme.bodyText1.color
       ..end = theme.accentColor;
     _backgroundColorTween
-      ..begin = Colors.teal[600]
+      ..begin = theme.cardColor
       ..end = widget.backgroundColor;
     super.didChangeDependencies();
   }

@@ -8,7 +8,6 @@ import 'package:project_new_style/Functions/moreFunctions.dart';
 import 'package:project_new_style/Pages/More/blogPost.dart';
 import 'package:project_new_style/Setting/numbers.dart';
 import 'package:project_new_style/Setting/strings.dart';
-import 'package:project_new_style/Styles/colors.dart';
 import 'package:project_new_style/Styles/textStyles.dart';
 import 'package:project_new_style/providers/MorePageProviders/blogProvider.dart';
 import 'package:provider/provider.dart';
@@ -166,6 +165,8 @@ class _BlogState extends State<Blog> {
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
     bool _mobileView = _width < mobileViewMaxWidth ? true : false;
+    ThemeData _theme = Theme.of(context);
+
     return FutureBuilder(
         future: Provider.of<BlogProvider>(context, listen: false).fetchBlog(),
         builder: (ctx, snapShot) {
@@ -176,7 +177,7 @@ class _BlogState extends State<Blog> {
               return CustomErrorWidget();
             } else {
               return Container(
-                color: backgroundColor,
+                color: _theme.backgroundColor,
                 child: Stack(children: [
                   Container(
                     alignment: Alignment.center,
@@ -218,33 +219,53 @@ class _BlogState extends State<Blog> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    InkWell(
-                                      child: Card(
-                                        shape: RoundedRectangleBorder(
-                                          side: BorderSide(
-                                              color: Colors.black, width: 5),
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                        ),
-                                        color: widget._pageIndex ==
-                                                    (data.blogs.length / 5)
-                                                        .round() ||
-                                                (widget._pageIndex + 1) * 5 ==
-                                                    data.blogs.length
-                                            ? Colors.grey
-                                            : themeColor,
-                                        child: Container(
-                                            margin: EdgeInsets.all(10),
-                                            child: Text(
-                                              'صفحه بعدی',
-                                              textDirection: TextDirection.rtl,
-                                              style: TextStyle(
-                                                fontFamily: mainFontFamily,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            )),
-                                      ),
-                                      onTap: () => {
+                                    // InkWell(
+                                    //   child: Card(
+                                    //     shape: RoundedRectangleBorder(
+                                    //       side: BorderSide(
+                                    //           color: Colors.black, width: 5),
+                                    //       borderRadius:
+                                    //           BorderRadius.circular(5),
+                                    //     ),
+                                    //     color: widget._pageIndex ==
+                                    //                 (data.blogs.length / 5)
+                                    //                     .round() ||
+                                    //             (widget._pageIndex + 1) * 5 ==
+                                    //                 data.blogs.length
+                                    //         ? _theme.disabledColor
+                                    //         : _theme.buttonColor,
+                                    //     child: Container(
+                                    //       margin: EdgeInsets.all(10),
+                                    //       child: Text(
+                                    //         'صفحه بعدی',
+                                    //         textDirection: TextDirection.rtl,
+                                    //         style: TextStyle(
+                                    //           fontFamily: mainFontFamily,
+                                    //           fontWeight: FontWeight.bold,
+                                    //         ),
+                                    //       ),
+                                    //     ),
+                                    // ),
+                                    //   onTap: () => {
+                                    //     widget._pageIndex ==
+                                    //                 (data.blogs.length / 5)
+                                    //                     .round() ||
+                                    //             (widget._pageIndex + 1) * 5 ==
+                                    //                 data.blogs.length
+                                    //         ? null
+                                    //         : pushNewScreenWithRouteSettings(
+                                    //             context,
+                                    //             settings: null,
+                                    //             screen:
+                                    //                 Blog(widget._pageIndex + 1),
+                                    //             pageTransitionAnimation:
+                                    //                 PageTransitionAnimation
+                                    //                     .fade,
+                                    //           ),
+                                    //   },
+                                    // ),
+                                    RaisedButton(
+                                      onPressed: () => {
                                         widget._pageIndex ==
                                                     (data.blogs.length / 5)
                                                         .round() ||
@@ -261,6 +282,10 @@ class _BlogState extends State<Blog> {
                                                         .fade,
                                               ),
                                       },
+                                      child: Text(
+                                        "صفحه بعد",
+                                        textAlign: TextAlign.center,
+                                      ),
                                     ),
                                     Text(
                                       'صفحه ' +
@@ -270,29 +295,8 @@ class _BlogState extends State<Blog> {
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                    InkWell(
-                                      child: Card(
-                                        shape: RoundedRectangleBorder(
-                                          side: BorderSide(
-                                              color: Colors.black, width: 5),
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                        ),
-                                        color: widget._pageIndex == 0
-                                            ? Colors.grey
-                                            : themeColor,
-                                        child: Container(
-                                            margin: EdgeInsets.all(10),
-                                            child: Text(
-                                              'صفحه قبلی',
-                                              textDirection: TextDirection.rtl,
-                                              style: TextStyle(
-                                                fontFamily: mainFontFamily,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            )),
-                                      ),
-                                      onTap: () => {
+                                    RaisedButton(
+                                      onPressed: () => {
                                         widget._pageIndex == 0
                                             ? null
                                             : pushNewScreenWithRouteSettings(
@@ -303,9 +307,49 @@ class _BlogState extends State<Blog> {
                                                 pageTransitionAnimation:
                                                     PageTransitionAnimation
                                                         .fade,
-                                              ),
+                                              )
                                       },
-                                    ),
+                                      child: Text(
+                                        "صفحه قبل",
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    )
+                                    // InkWell(
+                                    //   child: Card(
+                                    //     shape: RoundedRectangleBorder(
+                                    //       side: BorderSide(
+                                    //           color: Colors.black, width: 5),
+                                    //       borderRadius:
+                                    //           BorderRadius.circular(5),
+                                    //     ),
+                                    //     color: widget._pageIndex == 0
+                                    //         ? _theme.disabledColor
+                                    //         : _theme.buttonColor,
+                                    //     child: Container(
+                                    //         margin: EdgeInsets.all(10),
+                                    //         child: Text(
+                                    //           'صفحه قبلی',
+                                    //           textDirection: TextDirection.rtl,
+                                    //           style: TextStyle(
+                                    //             fontFamily: mainFontFamily,
+                                    //             fontWeight: FontWeight.bold,
+                                    //           ),
+                                    //         )),
+                                    //   ),
+                                    //   onTap: () => {
+                                    //     widget._pageIndex == 0
+                                    //         ? null
+                                    //         : pushNewScreenWithRouteSettings(
+                                    //             context,
+                                    //             settings: null,
+                                    //             screen:
+                                    //                 Blog(widget._pageIndex - 1),
+                                    //             pageTransitionAnimation:
+                                    //                 PageTransitionAnimation
+                                    //                     .fade,
+                                    //           ),
+                                    //   },
+                                    // ),
                                   ],
                                 ),
                               ),

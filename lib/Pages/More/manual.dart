@@ -28,20 +28,20 @@ class Manual extends StatelessWidget {
           }
           return Consumer<ManualProvider>(
             builder: (context, data, child) => Container(
-              color: backgroundColor,
+              color: Theme.of(context).backgroundColor,
               child: Stack(children: [
                 Container(
-                  alignment: Alignment.center,
+                  // alignment: Alignment.center,
                   margin: EdgeInsets.only(
                     top: appBarHeight + pagesTopMargin,
                   ),
-                  child: Container(
-                    margin: EdgeInsets.only(
-                      bottom: pagesBottomMargin,
-                      left: pagesRightAndLeftMargin(_width, _mobileView),
-                      right: pagesRightAndLeftMargin(_width, _mobileView),
-                    ),
-                    child: SingleChildScrollView(
+                  child: SingleChildScrollView(
+                    child: Container(
+                      margin: EdgeInsets.only(
+                        bottom: pagesBottomMargin,
+                        left: pagesRightAndLeftMargin(_width, _mobileView),
+                        right: pagesRightAndLeftMargin(_width, _mobileView),
+                      ),
                       child: Column(
                         children: [
                           ...data.manuals.map((e) => ManualWidget(

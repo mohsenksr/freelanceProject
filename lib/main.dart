@@ -13,6 +13,7 @@ import 'package:project_new_style/Setting/strings.dart';
 import 'package:project_new_style/Styles/colors.dart';
 import 'package:project_new_style/Styles/icons.dart';
 import 'package:project_new_style/Functions/mainFunctions.dart';
+import 'package:project_new_style/Styles/themes.dart';
 import 'package:project_new_style/providers/MorePageProviders/aboutUsProvider.dart';
 import 'package:project_new_style/providers/MorePageProviders/blogPostProvider.dart';
 import 'package:project_new_style/providers/MorePageProviders/blogProvider.dart';
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: defaultTheme, //Theme for the bot. navbar
       home: MainScreen(
         initialTab: MainTab.home,
       ),
@@ -99,39 +101,40 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   List<PersistentBottomNavBarItem> _navBarsItems() {
+    ThemeData theme = Theme.of(context);
     return [
       PersistentBottomNavBarItem(
         icon: Icon(homeIcon),
         title: homePageTitle,
-        activeColor: themeColor,
+        activeColor: theme.backgroundColor,
         inactiveColor: Colors.grey,
         titleStyle: TextStyle(fontFamily: mainFontFamily),
       ),
       PersistentBottomNavBarItem(
         icon: Icon(messagesIcon),
         title: (messagesPageTitle),
-        activeColor: themeColor,
+        activeColor: theme.backgroundColor,
         inactiveColor: Colors.grey,
         titleStyle: TextStyle(fontFamily: mainFontFamily),
       ),
       PersistentBottomNavBarItem(
         icon: Icon(searchIcon),
         title: (searchPageTitle),
-        activeColor: themeColor,
+        activeColor: theme.backgroundColor,
         inactiveColor: Colors.grey,
         titleStyle: TextStyle(fontFamily: mainFontFamily),
       ),
       PersistentBottomNavBarItem(
         icon: Icon(profileIcon),
         title: (profilePageTitle),
-        activeColor: themeColor,
+        activeColor: theme.backgroundColor,
         inactiveColor: Colors.grey,
         titleStyle: TextStyle(fontFamily: mainFontFamily),
       ),
       PersistentBottomNavBarItem(
         icon: Icon(moreIcon),
         title: (morePageTitle),
-        activeColor: themeColor,
+        activeColor: theme.backgroundColor,
         inactiveColor: Colors.grey,
         titleStyle: TextStyle(fontFamily: mainFontFamily),
       ),
@@ -152,6 +155,7 @@ class _MainScreenState extends State<MainScreen> {
         ChangeNotifierProvider.value(value: BlogPostProvider()),
       ],
       child: MaterialApp(
+        theme: defaultTheme,
         home: Scaffold(
           // drawer: Drawer(
           //   child: Center(
@@ -169,15 +173,23 @@ class _MainScreenState extends State<MainScreen> {
             confineInSafeArea: true,
 
             itemCount: 5,
-            backgroundColor: Colors.white,
+            backgroundColor: Color.fromRGBO(43, 45, 66, 1),
             handleAndroidBackButtonPress: true,
             resizeToAvoidBottomInset: true,
             stateManagement: true,
             hideNavigationBarWhenKeyboardShows: true,
             // hideNavigationBar: _hideNavBar,
             decoration: NavBarDecoration(
-                colorBehindNavBar: themeColor,
-                borderRadius: BorderRadius.circular(20.0)),
+              colorBehindNavBar: Theme.of(context).backgroundColor,
+              borderRadius: BorderRadius.circular(15.0),
+              boxShadow: [
+                BoxShadow(
+                  color: Color.fromRGBO(43, 45, 66, 1),
+                  offset: Offset(0.0, -2.0),
+                  blurRadius: 5.0,
+                ),
+              ],
+            ),
             popAllScreensOnTapOfSelectedTab: true,
             itemAnimationProperties: ItemAnimationProperties(
               duration: Duration(milliseconds: 400),

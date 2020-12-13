@@ -29,7 +29,7 @@ class _SearchRouteState extends State<SearchRoute> {
     bool _mobileView = _width < mobileViewMaxWidth ? true : false;
 
     return Container(
-      color: backgroundColor,
+      color: Theme.of(context).backgroundColor,
       child: Stack(
         children: [
           Container(
@@ -56,7 +56,6 @@ class _SearchRouteState extends State<SearchRoute> {
                         style: normalText,
                       ),
                       onPressed: () => changeState(),
-                      color: themeColor,
                     ),
                   ],
                 ),

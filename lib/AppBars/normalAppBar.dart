@@ -10,8 +10,20 @@ class NormalAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData theme = Theme.of(context);
+
     return Container(
-      color: themeColor,
+      decoration: BoxDecoration(
+        color: theme.appBarTheme.color,
+        boxShadow: [
+          BoxShadow(
+            offset: Offset(0.0, 2.0),
+            color: theme.appBarTheme.shadowColor,
+            blurRadius: 5.0
+          ),
+        ],
+      ),
+      // color: Theme.of(context).appBarTheme.color,
       width: double.infinity,
       height: 80,
       child: Column(

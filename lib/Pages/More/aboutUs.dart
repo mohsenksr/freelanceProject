@@ -20,57 +20,51 @@ class AboutUs extends StatelessWidget {
         future:
             Provider.of<AboutUsProvider>(context, listen: false).fetchAboutUs(),
         builder: (ctx, snapShot) {
-          //print(snapShot.connectionState);
           if (snapShot.connectionState == ConnectionState.waiting) {
             return CustomIndicator();
-          } else {
-            //print(snapShot.hasError);
-            if (snapShot.hasError) {
-              //print('no data');
-              return CustomErrorWidget();
-            } else {
-              return Container(
-                color: backgroundColor,
-                child: Stack(children: [
-                  Container(
-                    alignment: Alignment.center,
-                    margin: EdgeInsets.only(
-                      top: appBarHeight + pagesTopMargin,
-                    ),
-                    child: SingleChildScrollView(
-                      child: Container(
-                        margin: EdgeInsets.only(
-                          bottom: pagesBottomMargin,
-                          left: pagesRightAndLeftMargin(_width, _mobileView),
-                          right: pagesRightAndLeftMargin(_width, _mobileView),
-                        ),
-                        child:
-                            Consumer<AboutUsProvider>(builder: (ctx, d, child) {
-                          //print(d.aboutUs[0]['id']);
-                          return Column(
-                            children: [
-                              ...(d.aboutUs as List<Map<String, Object>>)
-                                  .map((item) {
-                                return Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: MoreTextElement(
-                                      item,
-                                      'question',
-                                      'answer',
-                                      aboutUsIcon,
-                                    ));
-                              }).toList(),
-                            ],
-                          );
-                        }),
-                      ),
-                    ),
-                  ),
-                  NormalAppBar(aboutUsPageTitle, true),
-                ]),
-              );
-            }
           }
+          if (snapShot.hasError) {
+            return CustomErrorWidget();
+          }
+          return Container(
+            color: Theme.of(context).backgroundColor,
+            child: Stack(children: [
+              Container(
+                alignment: Alignment.center,
+                margin: EdgeInsets.only(
+                  top: appBarHeight + pagesTopMargin,
+                ),
+                child: SingleChildScrollView(
+                  child: Container(
+                    margin: EdgeInsets.only(
+                      bottom: pagesBottomMargin,
+                      left: pagesRightAndLeftMargin(_width, _mobileView),
+                      right: pagesRightAndLeftMargin(_width, _mobileView),
+                    ),
+                    child: Consumer<AboutUsProvider>(builder: (ctx, d, child) {
+                      //print(d.aboutUs[0]['id']);
+                      return Column(
+                        children: [
+                          ...(d.aboutUs as List<Map<String, Object>>)
+                              .map((item) {
+                            return Directionality(
+                                textDirection: TextDirection.rtl,
+                                child: MoreTextElement(
+                                  item,
+                                  'question',
+                                  'answer',
+                                  aboutUsIcon,
+                                ));
+                          }).toList(),
+                        ],
+                      );
+                    }),
+                  ),
+                ),
+              ),
+              NormalAppBar(aboutUsPageTitle, true),
+            ]),
+          );
         });
   }
 }

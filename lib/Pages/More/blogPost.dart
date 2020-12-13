@@ -59,6 +59,7 @@ class _BlogPostState extends State<BlogPost> {
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
     bool _mobileView = _width < mobileViewMaxWidth ? true : false;
+    ThemeData theme = Theme.of(context);
 
     return FutureBuilder(
         future: Provider.of<BlogPostProvider>(context, listen: false)
@@ -77,7 +78,7 @@ class _BlogPostState extends State<BlogPost> {
                 _date = getBlogPostDate(data.blogPost[0]['create_time']);
                 _time = getBlogPostTime(data.blogPost[0]['create_time']);
                 return Container(
-                  color: backgroundColor,
+                  color: theme.backgroundColor,
                   child: Stack(children: [
                     Container(
                       alignment: Alignment.center,
@@ -92,9 +93,10 @@ class _BlogPostState extends State<BlogPost> {
                             right: pagesRightAndLeftMargin(_width, _mobileView),
                           ),
                           child: Card(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10)),
-                            elevation: 3,
+                            // shape: RoundedRectangleBorder(
+                            //     borderRadius: BorderRadius.circular(10)),
+                            // elevation: 3,
+                            color: Colors.white,
                             child: Column(
                               children: [
                                 AspectRatio(
@@ -104,8 +106,8 @@ class _BlogPostState extends State<BlogPost> {
                                     width: double.infinity,
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(10),
-                                          topRight: Radius.circular(10)),
+                                          topLeft: Radius.circular(15),
+                                          topRight: Radius.circular(15)),
                                       child: Image.network(
                                         _imageUrl,
                                         fit: BoxFit.cover,
@@ -131,18 +133,14 @@ class _BlogPostState extends State<BlogPost> {
                                                 _time,
                                                 textDirection:
                                                     TextDirection.rtl,
-                                                style: TextStyle(
-                                                  fontFamily: mainFontFamily,
-                                                  fontSize: 14,
-                                                  color: Colors.grey,
-                                                ),
+                                                style:
+                                                    theme.textTheme.subtitle1,
                                               ),
                                               Container(
                                                 margin:
                                                     EdgeInsets.only(left: 10),
                                                 child: Icon(
                                                   Icons.access_time,
-                                                  color: Colors.grey,
                                                 ),
                                               ),
                                             ],
@@ -151,22 +149,16 @@ class _BlogPostState extends State<BlogPost> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.end,
                                             children: [
-                                              Text(
-                                                _date,
-                                                textDirection:
-                                                    TextDirection.rtl,
-                                                style: TextStyle(
-                                                  fontFamily: mainFontFamily,
-                                                  fontSize: 14,
-                                                  color: Colors.grey,
-                                                ),
-                                              ),
+                                              Text(_date,
+                                                  textDirection:
+                                                      TextDirection.rtl,
+                                                  style: theme
+                                                      .textTheme.subtitle1),
                                               Container(
                                                 margin:
                                                     EdgeInsets.only(left: 10),
                                                 child: Icon(
                                                   Icons.calendar_today,
-                                                  color: Colors.grey,
                                                 ),
                                               ),
                                             ],
@@ -175,16 +167,10 @@ class _BlogPostState extends State<BlogPost> {
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.symmetric(
-                                            vertical: 10, horizontal: 20),
-                                        child: Text(
-                                          _title,
-                                          textDirection: TextDirection.rtl,
-                                          style: TextStyle(
-                                            fontFamily: mainFontFamily,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 18,
-                                          ),
-                                        ),
+                                            vertical: 15, horizontal: 5),
+                                        child: Text(_title,
+                                            textDirection: TextDirection.rtl,
+                                            style: theme.textTheme.headline5),
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.symmetric(
@@ -192,9 +178,7 @@ class _BlogPostState extends State<BlogPost> {
                                         child: Text(
                                           _content,
                                           textDirection: TextDirection.rtl,
-                                          style: TextStyle(
-                                            fontFamily: mainFontFamily,
-                                          ),
+                                          style: theme.textTheme.bodyText2,
                                         ),
                                       ),
                                       Row(
@@ -203,17 +187,19 @@ class _BlogPostState extends State<BlogPost> {
                                         children: [
                                           InkWell(
                                             child: Card(
-                                              shape: RoundedRectangleBorder(
-                                                side: BorderSide(
-                                                    color: Colors.black,
-                                                    width: 2),
-                                                borderRadius:
-                                                    BorderRadius.circular(5),
-                                              ),
-                                              color: themeColor,
+                                              // shape: RoundedRectangleBorder(
+                                              //   side: BorderSide(
+                                              //       color: Colors.black,
+                                              //       width: 2),
+                                              //   borderRadius:
+                                              //       BorderRadius.circular(5),
+                                              // ),
+                                              color: Colors.white,
                                               child: Container(
                                                 margin: EdgeInsets.all(10),
-                                                child: Icon(Icons.share),
+                                                child: Icon(
+                                                  Icons.share,
+                                                ),
                                               ),
                                             ),
                                             onTap: () => {},

@@ -29,7 +29,7 @@ class _ProfileRouteState extends State<ProfileRoute> {
     bool _mobileView = _width < mobileViewMaxWidth ? true : false;
 
     return Container(
-      color: backgroundColor,
+      color: Theme.of(context).backgroundColor,
       child: Stack(
         children: [
           Container(
@@ -56,7 +56,6 @@ class _ProfileRouteState extends State<ProfileRoute> {
                         style: normalText,
                       ),
                       onPressed: () => changeState(),
-                      color: themeColor,
                     ),
                   ],
                 ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../models/ProviderModels/manualModel.dart';
+import '../../models/ProviderModels/manualModel.dart';
 import 'CustomExpansionTile.dart';
 
 class ManualWidget extends StatelessWidget {

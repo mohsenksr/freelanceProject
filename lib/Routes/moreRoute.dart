@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:project_new_style/AppBars/normalAppBar.dart';
-import 'package:project_new_style/Components/moreGridElement.dart';
+import 'package:project_new_style/Components/MoreRoute/moreGridElement.dart';
 import 'package:project_new_style/Enums/moreOptionsEnum.dart';
 import 'package:project_new_style/Functions/moreFunctions.dart';
 import 'package:project_new_style/Pages/More/blog.dart';

@@ -184,26 +184,23 @@ class _BlogPostState extends State<BlogPost> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.start,
                                         children: [
-                                          InkWell(
-                                            child: Card(
-                                              // shape: RoundedRectangleBorder(
-                                              //   side: BorderSide(
-                                              //       color: Colors.black,
-                                              //       width: 2),
-                                              //   borderRadius:
-                                              //       BorderRadius.circular(5),
-                                              // ),
-                                              color: Colors.white,
-                                              child: Container(
-                                                margin: EdgeInsets.all(10),
-                                                child: Icon(
-                                                  Icons.share,
+                                          RaisedButton(
+                                            child: Row(
+                                              children: [
+                                                Container(
+                                                  margin: EdgeInsets.all(5),
+                                                  child: Icon(Icons.share),
                                                 ),
-                                              ),
+                                                Text(
+                                                  'اشتراک',
+                                                  style:
+                                                      theme.textTheme.bodyText1,
+                                                  textDirection:
+                                                      TextDirection.rtl,
+                                                )
+                                              ],
                                             ),
-                                            onTap: () => {
-                                              //TODO
-                                            },
+                                            onPressed: () => {},
                                           ),
                                         ],
                                       )

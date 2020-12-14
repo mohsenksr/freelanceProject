@@ -6,3 +6,7 @@ double mobileViewMaxWidth = 800;
 double pagesRightAndLeftMargin(double width, bool mobileView) {
   return mobileView ? 10 : width / 4;
 }
+
+double homePageRightAndLeftMargin(double width, bool mobileView) {
+  return 10;
+}

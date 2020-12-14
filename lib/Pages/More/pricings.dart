@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project_new_style/AppBars/normalAppBar.dart';
 import 'package:project_new_style/Components/customErrorWidget.dart';
 import 'package:project_new_style/Components/customIndicator.dart';
-import 'package:project_new_style/Components/pricingsWidget.dart';
+import 'package:project_new_style/Components/MoreRoute/pricingsWidget.dart';
 import 'package:project_new_style/Setting/numbers.dart';
 import 'package:project_new_style/Setting/strings.dart';
 import 'package:project_new_style/providers/MorePageProviders/pricingProvider.dart';

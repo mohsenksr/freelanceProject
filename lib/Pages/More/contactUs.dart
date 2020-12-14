@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project_new_style/AppBars/normalAppBar.dart';
 import 'package:project_new_style/Components/customErrorWidget.dart';
 import 'package:project_new_style/Components/customIndicator.dart';
-import 'package:project_new_style/Components/moreTextElement.dart';
+import 'package:project_new_style/Components/MoreRoute/moreTextElement.dart';
 import 'package:project_new_style/Setting/numbers.dart';
 import 'package:project_new_style/Setting/strings.dart';
 import 'package:project_new_style/Styles/icons.dart';

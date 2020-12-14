@@ -15,7 +15,7 @@ ThemeData defaultTheme = ThemeData(
           color: Color.fromRGBO(43, 45, 66, 1),
         ),
       ),
-      shadowColor:  Color.fromRGBO(43, 45, 66, 1),
+      shadowColor: Color.fromRGBO(43, 45, 66, 1),
       elevation: 3),
   appBarTheme: AppBarTheme(
     color: Color.fromRGBO(217, 4, 41, 1),
@@ -50,6 +50,12 @@ ThemeData defaultTheme = ThemeData(
         fontWeight: FontWeight.bold),
     headline5: TextStyle(
       fontSize: 16,
+      color: Colors.black,
+      fontFamily: mainFontFamily,
+      fontWeight: FontWeight.bold,
+    ),
+    headline2: TextStyle(
+      fontSize: 30,
       color: Colors.black,
       fontFamily: mainFontFamily,
       fontWeight: FontWeight.bold,

@@ -210,7 +210,10 @@ class _MainScreenState extends State<MainScreen> {
 }
 
 //.................... main features to do until 30 Azar, deadline of phase 1: ..........................
-//TODO: add remained more pages: pricings, blog, manual, softWareTeam
-//TODO: connect more pages to the server
-//TODO: design blog and connect to server
-//TODO: design home page and connect to server
+//TODO: softWareTeam
+//TODO: design home page for mobileView
+//TODO: design home projects and services card
+//TODO: fill button onPressed method
+//TODO: Persian texts have bug
+//TODO: redundant content when resize screen in more pages bug
+//TODO: home page in narrow pages gets error

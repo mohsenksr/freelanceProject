@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_new_style/AppBars/normalAppBar.dart';
-import 'package:project_new_style/Components/manualWidget.dart';
+import 'package:project_new_style/Components/MoreRoute/manualWidget.dart';
 import 'package:project_new_style/Setting/numbers.dart';
 import 'package:project_new_style/Setting/strings.dart';
 import 'package:provider/provider.dart';

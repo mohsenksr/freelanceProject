@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:project_new_style/AppBars/homeWebAppBar.dart';
+import 'package:project_new_style/AppBars/homeWebDesktopAppBar.dart';
+import 'package:project_new_style/AppBars/homeWebMobileAppBar.dart';
 import 'package:project_new_style/AppBars/normalAppBar.dart';
 import 'package:project_new_style/Components/HomeRoute/homeListHeader.dart';
-import 'package:project_new_style/Components/HomeRoute/webHomeFooter.dart';
-import 'package:project_new_style/Components/HomeRoute/webHomeImageAndText.dart';
+import 'package:project_new_style/Components/HomeRoute/webDesktopHomeFooter.dart';
+import 'package:project_new_style/Components/HomeRoute/webDesktopHomeImageAndText.dart';
+import 'package:project_new_style/Components/HomeRoute/webMobileHomeFooter.dart';
+import 'package:project_new_style/Components/HomeRoute/webMobileHomeImageAndText.dart';
 import 'package:project_new_style/Setting/numbers.dart';
 import 'package:project_new_style/Setting/strings.dart';
 import './../Styles/colors.dart';
@@ -54,23 +57,31 @@ class _HomeRouteState extends State<HomeRoute> {
                 child: Column(
                   children: [
                     kIsWeb
-                        ? WebHomeImageAndText(
-                            homeFirstStringTitle,
-                            homeFirstStringDescription,
-                            'assets/homeOne.png',
-                          )
-                        : Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                          ),
+                        ? _mobileView
+                            ? WebMobileHomeImageAndText(
+                                homeFirstStringTitle,
+                                homeFirstStringDescription,
+                                'assets/homeOne.png',
+                              )
+                            : WebDesktopHomeImageAndText(
+                                homeFirstStringTitle,
+                                homeFirstStringDescription,
+                                'assets/homeOne.png',
+                              )
+                        : SizedBox.shrink(),
                     kIsWeb
-                        ? WebHomeImageAndText(
-                            homeSecondStringTitle,
-                            homeSecondStringDescription,
-                            'assets/homeTwo.png',
-                          )
-                        : Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                          ),
+                        ? _mobileView
+                            ? WebMobileHomeImageAndText(
+                                homeSecondStringTitle,
+                                homeSecondStringDescription,
+                                'assets/homeTwo.png',
+                              )
+                            : WebDesktopHomeImageAndText(
+                                homeSecondStringTitle,
+                                homeSecondStringDescription,
+                                'assets/homeTwo.png',
+                              )
+                        : SizedBox.shrink(),
                     HomeListHeader(
                       'پروژه‌ها',
                       () => {
@@ -117,18 +128,29 @@ class _HomeRouteState extends State<HomeRoute> {
                         ),
                       ),
                     ),
-                    Divider(
-                      height: 200,
-                    ),
+                    kIsWeb
+                        ? Divider(
+                            height: 100,
+                            thickness: 3,
+                          )
+                        : SizedBox.shrink(),
                     Card(
-                      child: kIsWeb ? WebHomeFooter() : Column(),
+                      child: kIsWeb
+                          ? _mobileView
+                              ? WebMobileHomeFooter()
+                              : WebDesktopHomeFooter()
+                          : SizedBox.shrink(),
                     )
                   ],
                 ),
               ),
             ),
           ),
-          kIsWeb ? HomeWebAppBar() : NormalAppBar(homePageAppBarTitle, false),
+          kIsWeb
+              ? _mobileView
+                  ? HomeWebMobileAppBar()
+                  : HomeWebDesktopAppBar()
+              : NormalAppBar(homePageAppBarTitle, false),
         ],
       ),
     );

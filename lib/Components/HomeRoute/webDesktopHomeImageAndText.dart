@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:project_new_style/Setting/numbers.dart';
 
-class WebHomeImageAndText extends StatelessWidget {
+class WebDesktopHomeImageAndText extends StatelessWidget {
   final String title;
   final String description;
   final String imageAddress;
 
-  WebHomeImageAndText(this.title, this.description, this.imageAddress);
+  WebDesktopHomeImageAndText(this.title, this.description, this.imageAddress);
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_new_style/Setting/numbers.dart';
 
-class WebHomeFooter extends StatelessWidget {
+class WebMobileHomeFooter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
@@ -9,8 +9,9 @@ class WebHomeFooter extends StatelessWidget {
     ThemeData theme = Theme.of(context);
 
     return Container(
+      width: double.infinity,
       margin: EdgeInsets.all(20),
-      child: Row(
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -18,7 +19,7 @@ class WebHomeFooter extends StatelessWidget {
             children: [
               Container(
                 margin: EdgeInsets.all(20),
-                width: _mobileView ? _width / 7 : _width / 10,
+                width: _width / 4,
                 child: Image.asset('assets/logo.png'),
               ),
               Text(
@@ -30,12 +31,11 @@ class WebHomeFooter extends StatelessWidget {
                 'تمامی حقوق محفوظ است ©',
                 style: theme.textTheme.bodyText1,
                 textDirection: TextDirection.rtl,
-              )
-            ],
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+              ),
+              Divider(
+                height: 30,
+                thickness: 3,
+              ),
               RaisedButton(
                 child: Text(
                   'سؤالات متداول',
@@ -68,11 +68,6 @@ class WebHomeFooter extends StatelessWidget {
                 ),
                 onPressed: () => {},
               ),
-            ],
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
               RaisedButton(
                 child: Text(
                   'درباره ما',

@@ -3,9 +3,7 @@ import 'package:project_new_style/Components/CustomRaisedButton.dart';
 import 'package:project_new_style/Setting/strings.dart';
 import 'package:project_new_style/Styles/textStyles.dart';
 
-class HomeWebAppBar extends StatelessWidget {
-  HomeWebAppBar();
-
+class HomeWebMobileAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
@@ -29,13 +27,10 @@ class HomeWebAppBar extends StatelessWidget {
             child: SizedBox.shrink(),
           ),
           Container(
-            margin: const EdgeInsets.only(bottom: 10),
+            margin: const EdgeInsets.all(10),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  width: 80,
-                  height: 40,
-                ),
                 // InkWell(
                 //   child: Card(
                 //       shape: RoundedRectangleBorder(
@@ -76,14 +71,6 @@ class HomeWebAppBar extends StatelessWidget {
                 //       )),
                 //   onTap: () => {},
                 // ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 2.0),
-                  child: CustomRaisedButton(
-                    onPressed: () => {},
-                    title: homePageAppBarPricings,
-                    isDisabled: false,
-                  ),
-                ),
 
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 2.0),
@@ -94,9 +81,6 @@ class HomeWebAppBar extends StatelessWidget {
                   ),
                 ),
 
-                Expanded(
-                  child: SizedBox.shrink(),
-                ),
                 Text(
                   homePageAppBarTitle,
                   textAlign: TextAlign.end,
@@ -107,10 +91,6 @@ class HomeWebAppBar extends StatelessWidget {
                     fontSize: 20,
                   ),
                 ),
-                Container(
-                  width: 80,
-                  height: 40,
-                ),
               ],
             ),
           ),
@@ -119,14 +99,3 @@ class HomeWebAppBar extends StatelessWidget {
     );
   }
 }
-
-// goToPricings() async {
-//   const url = 'http://localhost:43949/#/about-us';
-//   if (await canLaunch(url)) {
-//     await launch(url);
-//   } else {
-//     throw 'Could not launch $url';
-//   }
-// }
-
-//TODO: some problems with url_launcher package. so buttons are inactive presently.

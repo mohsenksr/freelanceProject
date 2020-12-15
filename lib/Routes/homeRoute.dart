@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project_new_style/AppBars/homeWebDesktopAppBar.dart';
 import 'package:project_new_style/AppBars/homeWebMobileAppBar.dart';
 import 'package:project_new_style/AppBars/normalAppBar.dart';
+import 'package:project_new_style/Components/HomeRoute/ProjectAndServiceSuggest.dart';
 import 'package:project_new_style/Components/HomeRoute/homeListHeader.dart';
 import 'package:project_new_style/Components/HomeRoute/webDesktopHomeFooter.dart';
 import 'package:project_new_style/Components/HomeRoute/webDesktopHomeImageAndText.dart';
@@ -90,18 +91,16 @@ class _HomeRouteState extends State<HomeRoute> {
                     ),
                     Container(
                       margin: EdgeInsets.symmetric(vertical: 20.0),
-                      height: 200.0,
+                      height: 135,
                       child: ListView.builder(
                         shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
                         itemCount: 15,
-                        itemBuilder: (BuildContext context, int index) => Card(
-                          child: Container(
-                            padding: EdgeInsets.all(10),
-                            child: Center(
-                              child: Text('نمونه پروژه'),
-                            ),
-                          ),
+                        itemBuilder: (BuildContext context, int index) =>
+                            ProjectAndServiceSuggest(
+                          'http://138.201.6.240:8001/media/blog_photos/increase-virgool.jpg',
+                          30000,
+                          'نمونه پروژه',
                         ),
                       ),
                     ),
@@ -113,18 +112,16 @@ class _HomeRouteState extends State<HomeRoute> {
                     ),
                     Container(
                       margin: EdgeInsets.symmetric(vertical: 20.0),
-                      height: 200.0,
+                      height: 135,
                       child: ListView.builder(
                         shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
                         itemCount: 15,
-                        itemBuilder: (BuildContext context, int index) => Card(
-                          child: Container(
-                            padding: EdgeInsets.all(10),
-                            child: Center(
-                              child: Text('نمونه سرویس'),
-                            ),
-                          ),
+                        itemBuilder: (BuildContext context, int index) =>
+                            ProjectAndServiceSuggest(
+                          'http://138.201.6.240:8001/media/blog_photos/omid4.jpg',
+                          10000,
+                          'نمونه سرویس',
                         ),
                       ),
                     ),

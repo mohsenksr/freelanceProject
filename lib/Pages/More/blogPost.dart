@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_new_style/AppBars/normalAppBar.dart';
-import 'package:project_new_style/Components/customErrorWidget.dart';
+import 'package:project_new_style/Pages/customErrorWidget.dart';
 import 'package:project_new_style/Components/customIndicator.dart';
 import 'package:project_new_style/Functions/moreFunctions.dart';
 import 'package:project_new_style/Setting/numbers.dart';

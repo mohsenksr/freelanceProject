@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluro/fluro.dart';
 import 'package:project_new_style/Enums/mainTabsEnum.dart';
 import 'package:project_new_style/Enums/moreOptionsEnum.dart';
-import 'package:project_new_style/main.dart';
+import 'package:project_new_style/Routes/mainScreen.dart';
 
 class FluroMainRouter {
   static var router = FluroRouter();

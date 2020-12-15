@@ -4,7 +4,7 @@ import 'package:project_new_style/Components/MoreRoute/manualWidget.dart';
 import 'package:project_new_style/Setting/numbers.dart';
 import 'package:project_new_style/Setting/strings.dart';
 import 'package:provider/provider.dart';
-import '../../Components/customErrorWidget.dart';
+import '../customErrorWidget.dart';
 import '../../Components/customIndicator.dart';
 import '../../providers/MorePageProviders/manualProvider.dart';
 

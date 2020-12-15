@@ -18,7 +18,7 @@ class ManualWidget extends StatelessWidget {
         child: CustomExpansionTile(
           backgroundColor: Theme.of(context).cardColor,
           childrenPadding: EdgeInsets.all(16),
-          title: Text(
+          title: SelectableText(
             manualModel.title,
           ),
           children: [
@@ -55,14 +55,14 @@ class _ManualEntry extends StatelessWidget {
                   offset: Offset(0.0, 0.0))
             ],
           ),
-          child: Text(
+          child: SelectableText(
             manualEntry.title,
             style: theme.textTheme.headline5,
           ),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 12.0),
-          child: Text(
+          child: SelectableText(
             manualEntry.description,
             style: theme.textTheme.bodyText1,
           ),

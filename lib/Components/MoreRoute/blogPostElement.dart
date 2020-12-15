@@ -88,7 +88,7 @@ class BlogPostElement extends StatelessWidget {
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                  child: Text(
+                  child: SelectableText(
                     _title,
                     textDirection: TextDirection.rtl,
                     style: TextStyle(
@@ -134,8 +134,7 @@ class BlogPostElement extends StatelessWidget {
                           pageTransitionAnimation: PageTransitionAnimation.fade,
                         )
                       },
-                      title: 
-                        'ادامه مطلب',
+                      title: 'ادامه مطلب',
                       isDisabled: false,
                     ),
                   ],

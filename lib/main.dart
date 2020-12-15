@@ -214,6 +214,4 @@ class _MainScreenState extends State<MainScreen> {
 //TODO: design home page for mobileView
 //TODO: design home projects and services card
 //TODO: fill button onPressed method
-//TODO: Persian texts have bug
 //TODO: redundant content when resize screen in more pages bug
-//TODO: home page in narrow pages gets error

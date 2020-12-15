@@ -167,14 +167,14 @@ class _BlogPostState extends State<BlogPost> {
                                       Padding(
                                         padding: const EdgeInsets.symmetric(
                                             vertical: 15, horizontal: 5),
-                                        child: Text(_title,
+                                        child: SelectableText(_title,
                                             textDirection: TextDirection.rtl,
                                             style: theme.textTheme.headline5),
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.symmetric(
                                             vertical: 10, horizontal: 20),
-                                        child: Text(
+                                        child: SelectableText(
                                           _content,
                                           textDirection: TextDirection.rtl,
                                           style: theme.textTheme.bodyText2,

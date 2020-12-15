@@ -14,13 +14,13 @@ class WebHomeFooter extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(
-            margin: EdgeInsets.all(20),
-            width: 100,
-            child: Image.asset('assets/logo.png'),
-          ),
           Column(
             children: [
+              Container(
+                margin: EdgeInsets.all(20),
+                width: _mobileView ? _width / 7 : _width / 10,
+                child: Image.asset('assets/logo.png'),
+              ),
               Text(
                 'شرکت نام شرکت شما',
                 style: theme.textTheme.bodyText1,

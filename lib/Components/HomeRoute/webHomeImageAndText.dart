@@ -27,7 +27,7 @@ class WebHomeImageAndText extends StatelessWidget {
             width: _width / 3,
             child: Column(
               children: [
-                Text(
+                SelectableText(
                   title,
                   style: theme.textTheme.headline2,
                   textDirection: TextDirection.rtl,
@@ -36,7 +36,7 @@ class WebHomeImageAndText extends StatelessWidget {
                   height: 10,
                   thickness: 3,
                 ),
-                Text(
+                SelectableText(
                   description,
                   textDirection: TextDirection.rtl,
                   style: theme.textTheme.headline5,

@@ -44,10 +44,8 @@ class MoreTextElement extends StatelessWidget {
                         width: double.infinity,
                         padding: const EdgeInsets.symmetric(
                             vertical: 10, horizontal: 5),
-                        child: Text(
-                          item[headerKey],
-                          style: theme.textTheme.headline6
-                        ),
+                        child: SelectableText(item[headerKey],
+                            style: theme.textTheme.headline6),
                       ),
                     ),
                   ],
@@ -58,10 +56,8 @@ class MoreTextElement extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(10.0),
-                  child: Text(
-                    item[contentKey],
-                    style: theme.textTheme.bodyText1
-                  ),
+                  child: SelectableText(item[contentKey],
+                      style: theme.textTheme.bodyText1),
                 ),
               ],
             ),

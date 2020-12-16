@@ -9,52 +9,56 @@ import '../../Components/customIndicator.dart';
 import '../../providers/MorePageProviders/manualProvider.dart';
 
 class Manual extends StatelessWidget {
+  final _scrollController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
     bool _mobileView = _width < mobileViewMaxWidth ? true : false;
+    ThemeData theme = Theme.of(context);
 
-    return FutureBuilder(
-        future:
-            Provider.of<ManualProvider>(context, listen: false).fetchManual(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return CustomIndicator();
-          }
-          if (snapshot.hasError) {
-            return CustomErrorWidget();
-          }
-          return Consumer<ManualProvider>(
-            builder: (context, data, child) => Container(
-              color: Theme.of(context).backgroundColor,
-              child: Stack(children: [
-                Container(
-                  // alignment: Alignment.center,
-                  margin: EdgeInsets.only(
-                    top: appBarHeight,
-                  ),
-                  child: SingleChildScrollView(
-                    child: Container(
-                      margin: EdgeInsets.only(
-                        top: pagesTopMargin,
-                        bottom: pagesBottomMargin,
-                        left: pagesRightAndLeftMargin(_width, _mobileView),
-                        right: pagesRightAndLeftMargin(_width, _mobileView),
-                      ),
-                      child: Column(
-                        children: [
-                          ...data.manuals.map((e) => ManualWidget(
-                                manualModel: e,
-                              ))
-                        ].toList(),
-                      ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(manualPageTitle),
+        centerTitle: true,
+        textTheme: theme.textTheme,
+      ),
+      backgroundColor: theme.backgroundColor,
+      body: FutureBuilder(
+          future:
+              Provider.of<ManualProvider>(context, listen: false).fetchManual(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return CustomIndicator();
+            }
+            if (snapshot.hasError) {
+              return CustomErrorWidget();
+            }
+            return Consumer<ManualProvider>(
+              builder: (context, data, child) => Scrollbar(
+                controller: _scrollController,
+                isAlwaysShown: true,
+                child: SingleChildScrollView(
+                  controller: _scrollController,
+                  child: Container(
+                    margin: EdgeInsets.only(
+                      top: pagesTopMargin,
+                      bottom: pagesBottomMargin,
+                      left: pagesRightAndLeftMargin(_width, _mobileView),
+                      right: pagesRightAndLeftMargin(_width, _mobileView),
+                    ),
+                    child: Column(
+                      children: [
+                        ...data.manuals.map((e) => ManualWidget(
+                              manualModel: e,
+                            ))
+                      ].toList(),
                     ),
                   ),
                 ),
-                NormalAppBar(manualPageTitle, true),
-              ]),
-            ),
-          );
-        });
+              ),
+            );
+          }),
+    );
   }
 }

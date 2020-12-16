@@ -18,6 +18,8 @@ class BlogPost extends StatefulWidget {
 }
 
 class _BlogPostState extends State<BlogPost> {
+  final _scrollController = ScrollController();
+
   var _isInit = true;
 
   final int _postId;
@@ -31,194 +33,168 @@ class _BlogPostState extends State<BlogPost> {
   _BlogPostState(this._postId);
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void didChangeDependencies() {
-    // if (_isInit) {
-    //   print(_postId);
-    //   Provider.of<BlogPostProvider>(context).fetchBlogPost(_postId);
-    //   List<Map<String, dynamic>> data =
-    //       Provider.of<BlogPostProvider>(context).blogPost;
-    //   print(data.length);
-    //   _title = data[0]['title'];
-    //   _content = data[0]['content'];
-    //   _imageUrl = data[0]['image'];
-    //   _date = getBlogPostDate(data[0]['create_time']);
-    //   _time = getBlogPostTime(data[0]['create_time']);
-    // }
-    // _isInit = false;
-    super.didChangeDependencies();
-  }
-
-  @override
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
     bool _mobileView = _width < mobileViewMaxWidth ? true : false;
     ThemeData theme = Theme.of(context);
 
-    return FutureBuilder(
-        future: Provider.of<BlogPostProvider>(context, listen: false)
-            .fetchBlogPost(_postId),
-        builder: (ctx, snapShot) {
-          if (snapShot.connectionState == ConnectionState.waiting) {
-            return CustomIndicator();
-          } else {
-            if (snapShot.hasError) {
-              return CustomErrorWidget();
+    return Scaffold(
+      backgroundColor: theme.backgroundColor,
+      appBar: AppBar(
+        title: Text(blogPostPageTitle),
+        centerTitle: true,
+        textTheme: theme.textTheme,
+      ),
+      body: FutureBuilder(
+          future: Provider.of<BlogPostProvider>(context, listen: false)
+              .fetchBlogPost(_postId),
+          builder: (ctx, snapShot) {
+            if (snapShot.connectionState == ConnectionState.waiting) {
+              return CustomIndicator();
             } else {
-              return Consumer<BlogPostProvider>(builder: (ctx, data, child) {
-                _title = data.blogPost[0]['title'];
-                _content = data.blogPost[0]['content'];
-                _imageUrl = data.blogPost[0]['image'];
-                _date = getBlogPostDate(data.blogPost[0]['create_time']);
-                _time = getBlogPostTime(data.blogPost[0]['create_time']);
-                return Container(
-                  color: theme.backgroundColor,
-                  child: Stack(children: [
-                    Container(
-                      alignment: Alignment.center,
-                      margin: EdgeInsets.only(
-                        top: appBarHeight,
-                      ),
-                      child: SingleChildScrollView(
-                        child: Container(
-                          margin: EdgeInsets.only(
-                            top: pagesTopMargin,
-                            bottom: pagesBottomMargin,
-                            left: pagesRightAndLeftMargin(_width, _mobileView),
-                            right: pagesRightAndLeftMargin(_width, _mobileView),
-                          ),
-                          child: Card(
-                            // shape: RoundedRectangleBorder(
-                            //     borderRadius: BorderRadius.circular(10)),
-                            // elevation: 3,
-                            color: Colors.white,
-                            child: Column(
-                              children: [
-                                AspectRatio(
-                                  aspectRatio: 1.5,
-                                  child: Container(
-                                    // height: _width / 4,
-                                    width: double.infinity,
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(15),
-                                          topRight: Radius.circular(15)),
-                                      child: Image.network(
-                                        _imageUrl,
-                                        fit: BoxFit.cover,
-                                      ),
+              if (snapShot.hasError) {
+                return CustomErrorWidget();
+              } else {
+                return Consumer<BlogPostProvider>(builder: (ctx, data, child) {
+                  _title = data.blogPost[0]['title'];
+                  _content = data.blogPost[0]['content'];
+                  _imageUrl = data.blogPost[0]['image'];
+                  _date = getBlogPostDate(data.blogPost[0]['create_time']);
+                  _time = getBlogPostTime(data.blogPost[0]['create_time']);
+                  return Scrollbar(
+                    controller: _scrollController,
+                    isAlwaysShown: true,
+                    child: SingleChildScrollView(
+                      controller: _scrollController,
+                      child: Container(
+                        margin: EdgeInsets.only(
+                          top: pagesTopMargin,
+                          bottom: pagesBottomMargin,
+                          left: pagesRightAndLeftMargin(_width, _mobileView),
+                          right: pagesRightAndLeftMargin(_width, _mobileView),
+                        ),
+                        child: Card(
+                          // shape: RoundedRectangleBorder(
+                          //     borderRadius: BorderRadius.circular(10)),
+                          // elevation: 3,
+                          color: Colors.white,
+                          child: Column(
+                            children: [
+                              AspectRatio(
+                                aspectRatio: 1.5,
+                                child: Container(
+                                  // height: _width / 4,
+                                  width: double.infinity,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(15),
+                                        topRight: Radius.circular(15)),
+                                    child: Image.network(
+                                      _imageUrl,
+                                      fit: BoxFit.cover,
                                     ),
                                   ),
                                 ),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: 10, horizontal: 10),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                _time,
+                              ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 10, horizontal: 10),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              _time,
+                                              textDirection: TextDirection.rtl,
+                                              style: theme.textTheme.subtitle1,
+                                            ),
+                                            Container(
+                                              margin: EdgeInsets.only(left: 10),
+                                              child: Icon(
+                                                Icons.access_time,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: [
+                                            Text(_date,
                                                 textDirection:
                                                     TextDirection.rtl,
                                                 style:
-                                                    theme.textTheme.subtitle1,
+                                                    theme.textTheme.subtitle1),
+                                            Container(
+                                              margin: EdgeInsets.only(left: 10),
+                                              child: Icon(
+                                                Icons.calendar_today,
                                               ),
-                                              Container(
-                                                margin:
-                                                    EdgeInsets.only(left: 10),
-                                                child: Icon(
-                                                  Icons.access_time,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.end,
-                                            children: [
-                                              Text(_date,
-                                                  textDirection:
-                                                      TextDirection.rtl,
-                                                  style: theme
-                                                      .textTheme.subtitle1),
-                                              Container(
-                                                margin:
-                                                    EdgeInsets.only(left: 10),
-                                                child: Icon(
-                                                  Icons.calendar_today,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 15, horizontal: 5),
-                                        child: SelectableText(_title,
-                                            textDirection: TextDirection.rtl,
-                                            style: theme.textTheme.headline5),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 10, horizontal: 20),
-                                        child: SelectableText(
-                                          _content,
-                                          textDirection: TextDirection.rtl,
-                                          style: theme.textTheme.bodyText2,
-                                        ),
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          RaisedButton(
-                                            child: Row(
-                                              children: [
-                                                Container(
-                                                  margin: EdgeInsets.all(5),
-                                                  child: Icon(Icons.share),
-                                                ),
-                                                Text(
-                                                  'اشتراک',
-                                                  style:
-                                                      theme.textTheme.bodyText1,
-                                                  textDirection:
-                                                      TextDirection.rtl,
-                                                )
-                                              ],
                                             ),
-                                            onPressed: () => {},
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 15, horizontal: 5),
+                                      child: SelectableText(_title,
+                                          textDirection: TextDirection.rtl,
+                                          style: theme.textTheme.headline5),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 10, horizontal: 20),
+                                      child: SelectableText(
+                                        _content,
+                                        textDirection: TextDirection.rtl,
+                                        style: theme.textTheme.bodyText2,
+                                      ),
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        RaisedButton(
+                                          child: Row(
+                                            children: [
+                                              Container(
+                                                margin: EdgeInsets.all(5),
+                                                child: Icon(Icons.share),
+                                              ),
+                                              Text(
+                                                'اشتراک',
+                                                style:
+                                                    theme.textTheme.bodyText1,
+                                                textDirection:
+                                                    TextDirection.rtl,
+                                              )
+                                            ],
                                           ),
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),
+                                          onPressed: () => {},
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              )
+                            ],
                           ),
                         ),
                       ),
                     ),
-                    NormalAppBar(blogPageTitle, true),
-                  ]),
-                );
-              });
+                  );
+                });
+              }
             }
-          }
-        });
+          }),
+    );
   }
 }

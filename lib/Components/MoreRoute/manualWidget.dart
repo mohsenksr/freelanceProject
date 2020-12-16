@@ -18,7 +18,7 @@ class ManualWidget extends StatelessWidget {
         child: CustomExpansionTile(
           backgroundColor: Theme.of(context).cardColor,
           childrenPadding: EdgeInsets.all(16),
-          title: SelectableText(
+          title: Text(
             manualModel.title,
           ),
           children: [

@@ -11,6 +11,7 @@ class ProfileRoute extends StatefulWidget {
 }
 
 class _ProfileRouteState extends State<ProfileRoute> {
+  final _scrollController = ScrollController();
   int _state = 0;
 
   changeState() {
@@ -27,43 +28,44 @@ class _ProfileRouteState extends State<ProfileRoute> {
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
     bool _mobileView = _width < mobileViewMaxWidth ? true : false;
+    ThemeData theme = Theme.of(context);
 
-    return Container(
-      color: Theme.of(context).backgroundColor,
-      child: Stack(
-        children: [
-          Container(
-            margin: EdgeInsets.only(
-              top: appBarHeight + pagesTopMargin,
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(profilePageTitle),
+        centerTitle: true,
+        textTheme: theme.textTheme,
+      ),
+      backgroundColor: theme.backgroundColor,
+      body: Scrollbar(
+        controller: _scrollController,
+        isAlwaysShown: true,
+        child: SingleChildScrollView(
+          controller: _scrollController,
+          child: Container(
             alignment: Alignment.center,
-            child: SingleChildScrollView(
-              child: Container(
-                margin: EdgeInsets.only(
-                  bottom: pagesBottomMargin,
-                  left: pagesRightAndLeftMargin(_width, _mobileView),
-                  right: pagesRightAndLeftMargin(_width, _mobileView),
+            margin: EdgeInsets.only(
+              bottom: pagesBottomMargin,
+              left: pagesRightAndLeftMargin(_width, _mobileView),
+              right: pagesRightAndLeftMargin(_width, _mobileView),
+            ),
+            child: Column(
+              children: [
+                Text(
+                  'profile state: ' + _state.toString(),
+                  style: normalText,
                 ),
-                child: Column(
-                  children: [
-                    Text(
-                      'profile state: ' + _state.toString(),
-                      style: normalText,
-                    ),
-                    RaisedButton(
-                      child: Text(
-                        'change state',
-                        style: normalText,
-                      ),
-                      onPressed: () => changeState(),
-                    ),
-                  ],
+                RaisedButton(
+                  child: Text(
+                    'change state',
+                    style: normalText,
+                  ),
+                  onPressed: () => changeState(),
                 ),
-              ),
+              ],
             ),
           ),
-          NormalAppBar(profilePageTitle, false),
-        ],
+        ),
       ),
     );
   }

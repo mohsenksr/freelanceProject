@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project_new_style/AppBars/homeWebDesktopAppBar.dart';
 import 'package:project_new_style/AppBars/homeWebMobileAppBar.dart';
 import 'package:project_new_style/AppBars/normalAppBar.dart';
+import 'package:project_new_style/Components/CustomRaisedButton.dart';
 import 'package:project_new_style/Components/HomeRoute/ProjectAndServiceSuggest.dart';
 import 'package:project_new_style/Components/HomeRoute/homeListHeader.dart';
 import 'package:project_new_style/Components/HomeRoute/webDesktopHomeFooter.dart';
@@ -20,6 +21,7 @@ class HomeRoute extends StatefulWidget {
 }
 
 class _HomeRouteState extends State<HomeRoute> {
+  final _scrollController = ScrollController();
   int _state = 0;
 
   changeState() {
@@ -38,118 +40,128 @@ class _HomeRouteState extends State<HomeRoute> {
     bool _mobileView = _width < mobileViewMaxWidth ? true : false;
     ThemeData theme = Theme.of(context);
 
-    return Container(
-      color: Theme.of(context).backgroundColor,
-      child: Stack(
-        children: [
-          Container(
-            alignment: Alignment.center,
-            margin: EdgeInsets.only(
-              top: appBarHeight,
-            ),
-            child: SingleChildScrollView(
-              child: Container(
-                margin: EdgeInsets.only(
-                  top: pagesTopMargin,
-                  bottom: pagesBottomMargin,
-                  left: homePageRightAndLeftMargin(_width, _mobileView),
-                  right: homePageRightAndLeftMargin(_width, _mobileView),
-                ),
-                child: Column(
-                  children: [
-                    kIsWeb
-                        ? _mobileView
-                            ? WebMobileHomeImageAndText(
-                                homeFirstStringTitle,
-                                homeFirstStringDescription,
-                                'assets/homeOne.png',
-                              )
-                            : WebDesktopHomeImageAndText(
-                                homeFirstStringTitle,
-                                homeFirstStringDescription,
-                                'assets/homeOne.png',
-                              )
-                        : SizedBox.shrink(),
-                    kIsWeb
-                        ? _mobileView
-                            ? WebMobileHomeImageAndText(
-                                homeSecondStringTitle,
-                                homeSecondStringDescription,
-                                'assets/homeTwo.png',
-                              )
-                            : WebDesktopHomeImageAndText(
-                                homeSecondStringTitle,
-                                homeSecondStringDescription,
-                                'assets/homeTwo.png',
-                              )
-                        : SizedBox.shrink(),
-                    HomeListHeader(
-                      'پروژه‌ها',
-                      () => {
-                        //TODO
-                      },
+    return Scaffold(
+        appBar: kIsWeb
+            ? AppBar(
+                actions: [
+                  Container(
+                    margin: EdgeInsets.all(10),
+                    child: CustomRaisedButton(
+                      title: homePageAppBarInstallApp,
+                      onPressed: () => {},
                     ),
-                    Container(
-                      margin: EdgeInsets.symmetric(vertical: 20.0),
-                      height: 135,
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        itemCount: 15,
-                        itemBuilder: (BuildContext context, int index) =>
-                            ProjectAndServiceSuggest(
-                          'http://138.201.6.240:8001/media/blog_photos/increase-virgool.jpg',
-                          30000,
-                          'نمونه پروژه',
-                        ),
+                  )
+                ],
+                title: Text(homePageAppBarTitle),
+                centerTitle: true,
+                textTheme: theme.textTheme,
+              )
+            : AppBar(
+                title: Text(homePageAppBarTitle),
+                centerTitle: true,
+                textTheme: theme.textTheme,
+              ),
+        backgroundColor: theme.backgroundColor,
+        body: Scrollbar(
+          controller: _scrollController,
+          isAlwaysShown: true,
+          child: SingleChildScrollView(
+            controller: _scrollController,
+            child: Container(
+              alignment: Alignment.center,
+              margin: EdgeInsets.only(
+                top: pagesTopMargin,
+                bottom: pagesBottomMargin,
+                left: homePageRightAndLeftMargin(_width, _mobileView),
+                right: homePageRightAndLeftMargin(_width, _mobileView),
+              ),
+              child: Column(
+                children: [
+                  kIsWeb
+                      ? _mobileView
+                          ? WebMobileHomeImageAndText(
+                              homeFirstStringTitle,
+                              homeFirstStringDescription,
+                              'assets/homeOne.png',
+                            )
+                          : WebDesktopHomeImageAndText(
+                              homeFirstStringTitle,
+                              homeFirstStringDescription,
+                              'assets/homeOne.png',
+                            )
+                      : SizedBox.shrink(),
+                  kIsWeb
+                      ? _mobileView
+                          ? WebMobileHomeImageAndText(
+                              homeSecondStringTitle,
+                              homeSecondStringDescription,
+                              'assets/homeTwo.png',
+                            )
+                          : WebDesktopHomeImageAndText(
+                              homeSecondStringTitle,
+                              homeSecondStringDescription,
+                              'assets/homeTwo.png',
+                            )
+                      : SizedBox.shrink(),
+                  HomeListHeader(
+                    'پروژه‌ها',
+                    () => {
+                      //TODO
+                    },
+                  ),
+                  Container(
+                    margin: EdgeInsets.symmetric(vertical: 20.0),
+                    height: 135,
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 15,
+                      itemBuilder: (BuildContext context, int index) =>
+                          ProjectAndServiceSuggest(
+                        'http://138.201.6.240:8001/media/blog_photos/increase-virgool.jpg',
+                        30000,
+                        'نمونه پروژه',
                       ),
                     ),
-                    HomeListHeader(
-                      'سرویس‌ها',
-                      () => {
-                        //TODO
-                      },
-                    ),
-                    Container(
-                      margin: EdgeInsets.symmetric(vertical: 20.0),
-                      height: 135,
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        itemCount: 15,
-                        itemBuilder: (BuildContext context, int index) =>
-                            ProjectAndServiceSuggest(
-                          'http://138.201.6.240:8001/media/blog_photos/omid4.jpg',
-                          10000,
-                          'نمونه سرویس',
-                        ),
+                  ),
+                  HomeListHeader(
+                    'سرویس‌ها',
+                    () => {
+                      //TODO
+                    },
+                  ),
+                  Container(
+                    margin: EdgeInsets.symmetric(vertical: 20.0),
+                    height: 135,
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 15,
+                      itemBuilder: (BuildContext context, int index) =>
+                          ProjectAndServiceSuggest(
+                        'http://138.201.6.240:8001/media/blog_photos/omid4.jpg',
+                        10000,
+                        'نمونه سرویس',
                       ),
                     ),
-                    kIsWeb
-                        ? Divider(
-                            height: 100,
-                            thickness: 3,
-                          )
+                  ),
+                  kIsWeb
+                      ? Divider(
+                          height: 100,
+                          thickness: 3,
+                        )
+                      : SizedBox.shrink(),
+                  Card(
+                    child: kIsWeb
+                        ? _mobileView
+                            ? WebMobileHomeFooter()
+                            : WebDesktopHomeFooter()
                         : SizedBox.shrink(),
-                    Card(
-                      child: kIsWeb
-                          ? _mobileView
-                              ? WebMobileHomeFooter()
-                              : WebDesktopHomeFooter()
-                          : SizedBox.shrink(),
-                    )
-                  ],
-                ),
+                  )
+                ],
               ),
             ),
           ),
-          kIsWeb
-              ? _mobileView
-                  ? HomeWebMobileAppBar()
-                  : HomeWebDesktopAppBar()
-              : NormalAppBar(homePageAppBarTitle, false),
-        ],
-      ),
-    );
+        ));
   }
 }

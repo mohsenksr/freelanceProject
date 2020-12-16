@@ -10,65 +10,70 @@ import 'package:project_new_style/providers/MorePageProviders/rulesProvider.dart
 import 'package:provider/provider.dart';
 
 class Rules extends StatelessWidget {
+  final _scrollController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
     bool _mobileView = _width < mobileViewMaxWidth ? true : false;
+    ThemeData theme = Theme.of(context);
 
-    return FutureBuilder(
-        future: Provider.of<RuleProvider>(context, listen: false).fetchRules(),
-        builder: (ctx, snapShot) {
-          if (snapShot.connectionState == ConnectionState.waiting) {
-            return CustomIndicator();
-          } else {
-            if (snapShot.hasError) {
-              print('no data');
-              return CustomErrorWidget();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(rulesPageTitle),
+        centerTitle: true,
+        textTheme: theme.textTheme,
+      ),
+      backgroundColor: theme.backgroundColor,
+      body: FutureBuilder(
+          future:
+              Provider.of<RuleProvider>(context, listen: false).fetchRules(),
+          builder: (ctx, snapShot) {
+            if (snapShot.connectionState == ConnectionState.waiting) {
+              return CustomIndicator();
             } else {
-              return Container(
-                color: Theme.of(context).backgroundColor,
-                child: Stack(children: [
-                  Container(
-                    alignment: Alignment.center,
-                    margin: EdgeInsets.only(
-                      top: appBarHeight,
-                    ),
-                    child: SingleChildScrollView(
-                      child: Container(
-                        margin: EdgeInsets.only(
-                          top: pagesTopMargin,
-                          bottom: pagesBottomMargin,
-                          left: pagesRightAndLeftMargin(_width, _mobileView),
-                          right: pagesRightAndLeftMargin(_width, _mobileView),
-                        ),
-                        child: Consumer<RuleProvider>(
-                          builder: (ctx, data, child) => Container(
-                            child: Column(
-                              children: [
-                                ...(data.rules as List<Map<String, Object>>)
-                                    .map((item) {
-                                  return Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: MoreTextElement(
-                                      item,
-                                      'question',
-                                      'answer',
-                                      rulesIcon,
-                                    ),
-                                  );
-                                }).toList(),
-                              ],
-                            ),
+              if (snapShot.hasError) {
+                print('no data');
+                return CustomErrorWidget();
+              } else {
+                return Scrollbar(
+                  controller: _scrollController,
+                  isAlwaysShown: true,
+                  child: SingleChildScrollView(
+                    controller: _scrollController,
+                    child: Container(
+                      margin: EdgeInsets.only(
+                        top: pagesTopMargin,
+                        bottom: pagesBottomMargin,
+                        left: pagesRightAndLeftMargin(_width, _mobileView),
+                        right: pagesRightAndLeftMargin(_width, _mobileView),
+                      ),
+                      child: Consumer<RuleProvider>(
+                        builder: (ctx, data, child) => Container(
+                          child: Column(
+                            children: [
+                              ...(data.rules as List<Map<String, Object>>)
+                                  .map((item) {
+                                return Directionality(
+                                  textDirection: TextDirection.rtl,
+                                  child: MoreTextElement(
+                                    item,
+                                    'question',
+                                    'answer',
+                                    rulesIcon,
+                                  ),
+                                );
+                              }).toList(),
+                            ],
                           ),
                         ),
                       ),
                     ),
                   ),
-                  NormalAppBar(rulesPageTitle, true),
-                ]),
-              );
+                );
+              }
             }
-          }
-        });
+          }),
+    );
   }
 }

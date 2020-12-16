@@ -4,20 +4,28 @@ import 'package:project_new_style/Setting/numbers.dart';
 import 'package:project_new_style/Setting/strings.dart';
 
 class SoftwareTeam extends StatelessWidget {
+  final _scrollController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
     bool _mobileView = _width < mobileViewMaxWidth ? true : false;
+    ThemeData theme = Theme.of(context);
 
-    return Container(
-      color:  Theme.of(context).backgroundColor,
-      child: Stack(children: [
-        Container(
-          alignment: Alignment.center,
-          margin: EdgeInsets.only(
-            top: appBarHeight,
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(softwareTeamPageTitle),
+        centerTitle: true,
+        textTheme: theme.textTheme,
+      ),
+      backgroundColor: theme.backgroundColor,
+      body: Scrollbar(
+        controller: _scrollController,
+        isAlwaysShown: true,
+        child: SingleChildScrollView(
+          controller: _scrollController,
           child: Container(
+            alignment: Alignment.center,
             margin: EdgeInsets.only(
               top: pagesTopMargin,
               bottom: pagesBottomMargin,
@@ -31,8 +39,7 @@ class SoftwareTeam extends StatelessWidget {
             ),
           ),
         ),
-        NormalAppBar(softwareTeamPageTitle, true),
-      ]),
+      ),
     );
   }
 }

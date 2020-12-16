@@ -35,6 +35,11 @@ ThemeData defaultTheme = ThemeData(
     textTheme: ButtonTextTheme.primary,
   ),
   textTheme: TextTheme(
+    caption: TextStyle(
+      color: Colors.white,
+      fontFamily: mainFontFamily,
+      fontSize: 10,
+    ),
     bodyText2: TextStyle(
       color: Colors.black,
       fontFamily: mainFontFamily,

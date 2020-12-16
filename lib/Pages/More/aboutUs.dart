@@ -10,61 +10,63 @@ import 'package:project_new_style/providers/MorePageProviders/aboutUsProvider.da
 import 'package:provider/provider.dart';
 
 class AboutUs extends StatelessWidget {
+  final _scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
     bool _mobileView = _width < mobileViewMaxWidth ? true : false;
+    ThemeData theme = Theme.of(context);
 
-    return FutureBuilder(
-        future:
-            Provider.of<AboutUsProvider>(context, listen: false).fetchAboutUs(),
-        builder: (ctx, snapShot) {
-          if (snapShot.connectionState == ConnectionState.waiting) {
-            return CustomIndicator();
-          }
-          if (snapShot.hasError) {
-            return CustomErrorWidget();
-          }
-          return Container(
-            color: Theme.of(context).backgroundColor,
-            child: Stack(children: [
-              Container(
-                alignment: Alignment.center,
-                margin: EdgeInsets.only(
-                  top: appBarHeight,
-                ),
-                child: SingleChildScrollView(
-                  child: Container(
-                    margin: EdgeInsets.only(
-                      top: pagesTopMargin,
-                      bottom: pagesBottomMargin,
-                      left: pagesRightAndLeftMargin(_width, _mobileView),
-                      right: pagesRightAndLeftMargin(_width, _mobileView),
-                    ),
-                    child: Consumer<AboutUsProvider>(builder: (ctx, d, child) {
-                      //print(d.aboutUs[0]['id']);
-                      return Column(
-                        children: [
-                          ...(d.aboutUs as List<Map<String, Object>>)
-                              .map((item) {
-                            return Directionality(
-                                textDirection: TextDirection.rtl,
-                                child: MoreTextElement(
-                                  item,
-                                  'question',
-                                  'answer',
-                                  aboutUsIcon,
-                                ));
-                          }).toList(),
-                        ],
-                      );
-                    }),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(aboutUsPageTitle),
+        centerTitle: true,
+        textTheme: theme.textTheme,
+      ),
+      backgroundColor: theme.backgroundColor,
+      body: FutureBuilder(
+          future: Provider.of<AboutUsProvider>(context, listen: false)
+              .fetchAboutUs(),
+          builder: (ctx, snapShot) {
+            if (snapShot.connectionState == ConnectionState.waiting) {
+              return CustomIndicator();
+            }
+            if (snapShot.hasError) {
+              return CustomErrorWidget();
+            }
+            return Scrollbar(
+              controller: _scrollController,
+              isAlwaysShown: true,
+              child: SingleChildScrollView(
+                controller: _scrollController,
+                child: Container(
+                  margin: EdgeInsets.only(
+                    top: pagesTopMargin,
+                    bottom: pagesBottomMargin,
+                    left: pagesRightAndLeftMargin(_width, _mobileView),
+                    right: pagesRightAndLeftMargin(_width, _mobileView),
                   ),
+                  child: Consumer<AboutUsProvider>(builder: (ctx, d, child) {
+                    //print(d.aboutUs[0]['id']);
+                    return Column(
+                      children: [
+                        ...(d.aboutUs as List<Map<String, Object>>).map((item) {
+                          return Directionality(
+                              textDirection: TextDirection.rtl,
+                              child: MoreTextElement(
+                                item,
+                                'question',
+                                'answer',
+                                aboutUsIcon,
+                              ));
+                        }).toList(),
+                      ],
+                    );
+                  }),
                 ),
               ),
-              NormalAppBar(aboutUsPageTitle, true),
-            ]),
-          );
-        });
+            );
+          }),
+    );
   }
 }

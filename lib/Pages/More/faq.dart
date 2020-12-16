@@ -10,63 +10,67 @@ import 'package:project_new_style/providers/MorePageProviders/faqProvider.dart';
 import 'package:provider/provider.dart';
 
 class Faq extends StatelessWidget {
+  final _scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
     bool _mobileView = _width < mobileViewMaxWidth ? true : false;
-    return FutureBuilder(
-        future: Provider.of<FaqProvider>(context, listen: false).fetchFaq(),
-        builder: (ctx, snapShot) {
-          print(snapShot.connectionState);
-          if (snapShot.connectionState == ConnectionState.waiting) {
-            return CustomIndicator();
-          } else {
-            if (snapShot.hasError) {
-              print('no data');
-              return CustomErrorWidget();
+    ThemeData theme = Theme.of(context);
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(faqPageTitle),
+        centerTitle: true,
+        textTheme: theme.textTheme,
+      ),
+      backgroundColor: theme.backgroundColor,
+      body: FutureBuilder(
+          future: Provider.of<FaqProvider>(context, listen: false).fetchFaq(),
+          builder: (ctx, snapShot) {
+            print(snapShot.connectionState);
+            if (snapShot.connectionState == ConnectionState.waiting) {
+              return CustomIndicator();
             } else {
-              return Container(
-                color: Theme.of(context).backgroundColor,
-                child: Stack(children: [
-                  Container(
-                    alignment: Alignment.center,
-                    margin: EdgeInsets.only(
-                      top: appBarHeight,
-                    ),
-                    child: SingleChildScrollView(
-                      child: Consumer<FaqProvider>(
-                        builder: (ctx, data, child) => Container(
-                          margin: EdgeInsets.only(
-                            top: pagesTopMargin,
-                            bottom: pagesBottomMargin,
-                            left: pagesRightAndLeftMargin(_width, _mobileView),
-                            right: pagesRightAndLeftMargin(_width, _mobileView),
-                          ),
-                          child: Column(
-                            children: [
-                              ...(data.faq as List<Map<String, Object>>)
-                                  .map((item) {
-                                return Directionality(
-                                  textDirection: TextDirection.rtl,
-                                  child: MoreTextElement(
-                                    item,
-                                    'question',
-                                    'answer',
-                                    faqIcon,
-                                  ),
-                                );
-                              }).toList(),
-                            ],
-                          ),
+              if (snapShot.hasError) {
+                print('no data');
+                return CustomErrorWidget();
+              } else {
+                return Scrollbar(
+                  controller: _scrollController,
+                  isAlwaysShown: true,
+                  child: SingleChildScrollView(
+                    controller: _scrollController,
+                    child: Consumer<FaqProvider>(
+                      builder: (ctx, data, child) => Container(
+                        margin: EdgeInsets.only(
+                          top: pagesTopMargin,
+                          bottom: pagesBottomMargin,
+                          left: pagesRightAndLeftMargin(_width, _mobileView),
+                          right: pagesRightAndLeftMargin(_width, _mobileView),
+                        ),
+                        child: Column(
+                          children: [
+                            ...(data.faq as List<Map<String, Object>>)
+                                .map((item) {
+                              return Directionality(
+                                textDirection: TextDirection.rtl,
+                                child: MoreTextElement(
+                                  item,
+                                  'question',
+                                  'answer',
+                                  faqIcon,
+                                ),
+                              );
+                            }).toList(),
+                          ],
                         ),
                       ),
                     ),
                   ),
-                  NormalAppBar(faqPageTitle, true),
-                ]),
-              );
+                );
+              }
             }
-          }
-        });
+          }),
+    );
   }
 }

@@ -16,6 +16,7 @@ class GridElement extends StatelessWidget {
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
     bool _mobileView = _width < mobileViewMaxWidth ? true : false;
+    ThemeData theme = Theme.of(context);
 
     return InkWell(
       child: Card(
@@ -31,13 +32,17 @@ class GridElement extends StatelessWidget {
               ),
             ),
             Flexible(
-                flex: 1,
-                child: Text(
-                  getText(_moreOption),
-                  textDirection: TextDirection.rtl,
-                  style: TextStyle(
-                      color: Colors.white, fontFamily: mainFontFamily),
-                )),
+              flex: 1,
+              child: Text(
+                getText(_moreOption),
+                textDirection: TextDirection.rtl,
+                style: _mobileView
+                    ? theme.textTheme.bodyText1
+                    : _width < 800
+                        ? theme.textTheme.caption
+                        : theme.textTheme.bodyText1,
+              ),
+            ),
           ],
         ),
       ),

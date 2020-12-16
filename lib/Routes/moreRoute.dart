@@ -20,6 +20,7 @@ class MoreRoute extends StatefulWidget {
 }
 
 class _MoreRouteState extends State<MoreRoute> {
+  final _scrollController = ScrollController();
   final MoreOption _moreOption;
   final int _blogPostId;
 
@@ -56,30 +57,36 @@ class _MoreRouteState extends State<MoreRoute> {
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
     bool _mobileView = _width < mobileViewMaxWidth ? true : false;
+    ThemeData theme = Theme.of(context);
 
-    return Container(
-      // color: backgroundColor,
-      color: Theme.of(context).backgroundColor,
-      child: Stack(
-        children: [
-          GridView.count(
-            padding: EdgeInsets.fromLTRB(
-                _mobileView ? _width / 7 : _width / 6,
-                _mobileView ? appBarHeight + pagesTopMargin : 180,
-                _mobileView ? _width / 7 : _width / 6,
-                _mobileView ? 30 : 100),
-            crossAxisCount: _mobileView ? 2 : 4,
-            crossAxisSpacing: _mobileView ? 30.0 : _width / 30,
-            mainAxisSpacing: _mobileView ? 10.0 : _width / 30,
-            shrinkWrap: true,
-            children: [
-              ...(MoreOption.values as List<MoreOption>).map((option) {
-                return GridElement(option);
-              }).toList(),
-            ],
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(morePageTitle),
+        centerTitle: true,
+        textTheme: theme.textTheme,
+      ),
+      backgroundColor: theme.backgroundColor,
+      body: Scrollbar(
+        isAlwaysShown: true,
+        controller: _scrollController,
+        child: GridView.count(
+          controller: _scrollController,
+          padding: EdgeInsets.only(
+            left: _mobileView ? _width / 7 : _width / 6,
+            top: pagesTopMargin,
+            right: _mobileView ? _width / 7 : _width / 6,
+            bottom: pagesBottomMargin,
           ),
-          NormalAppBar(morePageTitle, false),
-        ],
+          crossAxisCount: _mobileView ? 2 : 4,
+          crossAxisSpacing: _mobileView ? 30.0 : _width / 30,
+          mainAxisSpacing: _mobileView ? 10.0 : _width / 30,
+          shrinkWrap: true,
+          children: [
+            ...(MoreOption.values as List<MoreOption>).map((option) {
+              return GridElement(option);
+            }).toList(),
+          ],
+        ),
       ),
     );
   }

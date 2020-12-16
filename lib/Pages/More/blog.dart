@@ -24,6 +24,8 @@ class Blog extends StatefulWidget {
 }
 
 class _BlogState extends State<Blog> {
+  final _scrollController = ScrollController();
+
   @override
   void initState() {
     super.initState();
@@ -43,199 +45,114 @@ class _BlogState extends State<Blog> {
     bool _mobileView = _width < mobileViewMaxWidth ? true : false;
     ThemeData theme = Theme.of(context);
 
-    return FutureBuilder(
-        future: Provider.of<BlogProvider>(context, listen: false).fetchBlog(),
-        builder: (ctx, snapShot) {
-          if (snapShot.connectionState == ConnectionState.waiting) {
-            return CustomIndicator();
-          } else {
-            if (snapShot.hasError) {
-              return CustomErrorWidget();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(blogPageTitle),
+        centerTitle: true,
+        textTheme: theme.textTheme,
+      ),
+      backgroundColor: theme.backgroundColor,
+      body: FutureBuilder(
+          future: Provider.of<BlogProvider>(context, listen: false).fetchBlog(),
+          builder: (ctx, snapShot) {
+            if (snapShot.connectionState == ConnectionState.waiting) {
+              return CustomIndicator();
             } else {
-              return Container(
-                color: theme.backgroundColor,
-                child: Stack(children: [
-                  Container(
-                    alignment: Alignment.center,
-                    margin: EdgeInsets.only(
-                      top: appBarHeight,
-                    ),
-                    child: SingleChildScrollView(
-                      child: Container(
-                        margin: EdgeInsets.only(
-                          top: pagesTopMargin,
-                          bottom: pagesBottomMargin,
-                          left: pagesRightAndLeftMargin(_width, _mobileView),
-                          right: pagesRightAndLeftMargin(_width, _mobileView),
-                        ),
-                        child: Consumer<BlogProvider>(
-                          builder: (ctx, data, child) => Column(
-                            children: [
-                              ...((widget._pageIndex + 1) * 5 <
-                                          data.blogs.length
-                                      ? data.blogs.sublist(
-                                              widget._pageIndex * 5,
-                                              (widget._pageIndex + 1) * 5)
-                                          as List<Map<String, Object>>
-                                      : data.blogs.sublist(
-                                              widget._pageIndex * 5,
-                                              data.blogs.length)
-                                          as List<Map<String, Object>>)
-                                  .map((item) {
-                                return BlogPostElement(
-                                  item['id'],
-                                  item['title'],
-                                  item['image'],
-                                  getBlogPostDate(item['create_time']),
-                                  getBlogPostTime(item['create_time']),
-                                );
-                              }).toList(),
-                              Container(
-                                margin: EdgeInsets.only(top: 20),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    // InkWell(
-                                    //   child: Card(
-                                    //     shape: RoundedRectangleBorder(
-                                    //       side: BorderSide(
-                                    //           color: Colors.black, width: 5),
-                                    //       borderRadius:
-                                    //           BorderRadius.circular(5),
-                                    //     ),
-                                    //     color: widget._pageIndex ==
-                                    //                 (data.blogs.length / 5)
-                                    //                     .round() ||
-                                    //             (widget._pageIndex + 1) * 5 ==
-                                    //                 data.blogs.length
-                                    //         ? theme.disabledColor
-                                    //         : theme.buttonColor,
-                                    //     child: Container(
-                                    //       margin: EdgeInsets.all(10),
-                                    //       child: Text(
-                                    //         'صفحه بعدی',
-                                    //         textDirection: TextDirection.rtl,
-                                    //         style: TextStyle(
-                                    //           fontFamily: mainFontFamily,
-                                    //           fontWeight: FontWeight.bold,
-                                    //         ),
-                                    //       ),
-                                    //     ),
-                                    // ),
-                                    //   onTap: () => {
-                                    //     widget._pageIndex ==
-                                    //                 (data.blogs.length / 5)
-                                    //                     .round() ||
-                                    //             (widget._pageIndex + 1) * 5 ==
-                                    //                 data.blogs.length
-                                    //         ? null
-                                    //         : pushNewScreenWithRouteSettings(
-                                    //             context,
-                                    //             settings: null,
-                                    //             screen:
-                                    //                 Blog(widget._pageIndex + 1),
-                                    //             pageTransitionAnimation:
-                                    //                 PageTransitionAnimation
-                                    //                     .fade,
-                                    //           ),
-                                    //   },
-                                    // ),
-                                    CustomRaisedButton(
-                                      onPressed: () => {
-                                        pushNewScreenWithRouteSettings(
-                                          context,
-                                          settings: null,
-                                          screen: Blog(widget._pageIndex + 1),
-                                          pageTransitionAnimation:
-                                              PageTransitionAnimation.fade,
-                                        ),
-                                      },
-                                      title: "صفحه بعد",
-                                      isDisabled: widget._pageIndex ==
-                                                  (data.blogs.length / 5)
-                                                      .round() ||
-                                              (widget._pageIndex + 1) * 5 ==
-                                                  data.blogs.length
-                                          ? true
-                                          : false,
-                                    ),
-                                    Text(
-                                      'صفحه ' +
-                                          getPersianNumbers(
-                                              (widget._pageIndex + 1)
-                                                  .toString()),
-                                      style: TextStyle(
-                                        fontFamily: mainFontFamily,
-                                        fontWeight: FontWeight.bold,
+              if (snapShot.hasError) {
+                return CustomErrorWidget();
+              } else {
+                return Scrollbar(
+                  controller: _scrollController,
+                  isAlwaysShown: true,
+                  child: SingleChildScrollView(
+                    controller: _scrollController,
+                    child: Container(
+                      margin: EdgeInsets.only(
+                        top: pagesTopMargin,
+                        bottom: pagesBottomMargin,
+                        left: pagesRightAndLeftMargin(_width, _mobileView),
+                        right: pagesRightAndLeftMargin(_width, _mobileView),
+                      ),
+                      child: Consumer<BlogProvider>(
+                        builder: (ctx, data, child) => Column(
+                          children: [
+                            ...((widget._pageIndex + 1) * 5 < data.blogs.length
+                                    ? data.blogs.sublist(widget._pageIndex * 5,
+                                            (widget._pageIndex + 1) * 5)
+                                        as List<Map<String, Object>>
+                                    : data.blogs.sublist(widget._pageIndex * 5,
+                                            data.blogs.length)
+                                        as List<Map<String, Object>>)
+                                .map((item) {
+                              return BlogPostElement(
+                                item['id'],
+                                item['title'],
+                                item['image'],
+                                getBlogPostDate(item['create_time']),
+                                getBlogPostTime(item['create_time']),
+                              );
+                            }).toList(),
+                            Container(
+                              margin: EdgeInsets.only(top: 20),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  CustomRaisedButton(
+                                    onPressed: () => {
+                                      pushNewScreenWithRouteSettings(
+                                        context,
+                                        settings: null,
+                                        screen: Blog(widget._pageIndex + 1),
+                                        pageTransitionAnimation:
+                                            PageTransitionAnimation.fade,
                                       ),
+                                    },
+                                    title: "صفحه بعد",
+                                    isDisabled: widget._pageIndex ==
+                                                (data.blogs.length / 5)
+                                                    .round() ||
+                                            (widget._pageIndex + 1) * 5 ==
+                                                data.blogs.length
+                                        ? true
+                                        : false,
+                                  ),
+                                  Text(
+                                    'صفحه ' +
+                                        getPersianNumbers(
+                                            (widget._pageIndex + 1).toString()),
+                                    style: TextStyle(
+                                      fontFamily: mainFontFamily,
+                                      fontWeight: FontWeight.bold,
                                     ),
-                                    CustomRaisedButton(
-                                      onPressed: () => {
-                                        pushNewScreenWithRouteSettings(
-                                          context,
-                                          settings: null,
-                                          screen: Blog(widget._pageIndex - 1),
-                                          pageTransitionAnimation:
-                                              PageTransitionAnimation.fade,
-                                        )
-                                      },
-                                      title: "صفحه قبل",
-                                      isDisabled:
-                                          widget._pageIndex <= 0 ? true : false,
-                                    ),
-
-                                    // InkWell(
-                                    //   child: Card(
-                                    //     shape: RoundedRectangleBorder(
-                                    //       side: BorderSide(
-                                    //           color: Colors.black, width: 5),
-                                    //       borderRadius:
-                                    //           BorderRadius.circular(5),
-                                    //     ),
-                                    //     color: widget._pageIndex == 0
-                                    //         ? theme.disabledColor
-                                    //         : theme.buttonColor,
-                                    //     child: Container(
-                                    //         margin: EdgeInsets.all(10),
-                                    //         child: Text(
-                                    //           'صفحه قبلی',
-                                    //           textDirection: TextDirection.rtl,
-                                    //           style: TextStyle(
-                                    //             fontFamily: mainFontFamily,
-                                    //             fontWeight: FontWeight.bold,
-                                    //           ),
-                                    //         )),
-                                    //   ),
-                                    //   onTap: () => {
-                                    //     widget._pageIndex == 0
-                                    //         ? null
-                                    //         : pushNewScreenWithRouteSettings(
-                                    //             context,
-                                    //             settings: null,
-                                    //             screen:
-                                    //                 Blog(widget._pageIndex - 1),
-                                    //             pageTransitionAnimation:
-                                    //                 PageTransitionAnimation
-                                    //                     .fade,
-                                    //           ),
-                                    //   },
-                                    // ),
-                                  ],
-                                ),
+                                  ),
+                                  CustomRaisedButton(
+                                    onPressed: () => {
+                                      pushNewScreenWithRouteSettings(
+                                        context,
+                                        settings: null,
+                                        screen: Blog(widget._pageIndex - 1),
+                                        pageTransitionAnimation:
+                                            PageTransitionAnimation.fade,
+                                      )
+                                    },
+                                    title: "صفحه قبل",
+                                    isDisabled:
+                                        widget._pageIndex <= 0 ? true : false,
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
                   ),
-                  NormalAppBar(blogPageTitle, true),
-                ]),
-              );
+                );
+              }
             }
-          }
-        });
+          }),
+    );
   }
 }
 
